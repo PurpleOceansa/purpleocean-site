@@ -101,24 +101,9 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      nav {
-        order: 3;
-      }
     }
 
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: center;
-    }
-
-    @media (max-width: 800px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    /* HERO SECTION WITH FULL WIDTH */
     .hero {
       padding: 24px 22px;
       background-color: var(--card-bg);
@@ -202,79 +187,6 @@
       opacity: 0.95;
     }
 
-    .btn-ghost {
-      font-size: 0.9rem;
-      border-radius: 999px;
-      padding: 9px 14px;
-      border: 1px solid var(--border-subtle);
-      background-color: transparent;
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--text-main);
-    }
-
-    .contact-card {
-      padding: 20px 18px;
-      background-color: var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 8px 24px rgba(15, 18, 40, 0.04);
-      font-size: 0.95rem;
-    }
-
-    .contact-title {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .contact-sub {
-      margin: 0 0 14px;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .contact-row {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .contact-item {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      font-size: 0.9rem;
-    }
-
-    .contact-label {
-      width: 70px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-
-    .contact-value a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .contact-value a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-note {
-      margin-top: 6px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
     footer {
       margin-top: auto;
       padding: 14px 20px 22px;
@@ -292,8 +204,10 @@
     }
   </style>
 </head>
+
 <body>
   <div class="page">
+
     <header>
       <div class="brand">
         <img src="logo.png" alt="Purple Ocean logo">
@@ -304,16 +218,18 @@
       </div>
       <nav>
         <a href="#about">About</a>
-        <a href="#contact">Contact</a>
       </nav>
     </header>
 
+    <!-- HERO ONLY -->
     <main>
       <section class="hero" id="about">
         <div class="hero-pill">Business & Operations</div>
+
         <h1 class="hero-title">
           Purple Ocean streamlines operations and grows through smart solutions.
         </h1>
+
         <p class="hero-sub">
           We work with companies to simplify processes, reduce friction, and support sustainable growth.
         </p>
@@ -328,37 +244,10 @@
           <a class="btn-primary" href="mailto:info@purpleocean.sa?subject=Inquiry%20from%20website">
             Contact us by email
           </a>
-          <a class="btn-ghost" href="#contact">
-            View contact details
-          </a>
         </div>
       </section>
-
-      <aside class="contact-card" id="contact">
-        <h2 class="contact-title">Contact information</h2>
-        <p class="contact-sub">Reach out with a short description of what you need, and we’ll get back to you.</p>
-
-        <div class="contact-row">
-          <div class="contact-item">
-            <div class="contact-label">Email</div>
-            <div class="contact-value">
-              <a href="mailto:info@purpleocean.sa">info@purpleocean.sa</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-label">Location</div>
-            <div class="contact-value">
-              Saudi Arabia, Jeddah 3446
-            </div>
-          </div>
-        </div>
-
-        <p class="contact-note">
-          Prefer email? Just send us a message at
-          <a href="mailto:info@purpleocean.sa">info@purpleocean.sa</a>.
-        </p>
-      </aside>
     </main>
+
   </div>
 
   <footer>
@@ -369,8 +258,8 @@
   </footer>
 
   <script>
-    // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
