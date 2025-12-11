@@ -34,7 +34,7 @@
     .page {
       max-width: 960px;
       margin: 0 auto;
-      padding: 32px 20px 40px;
+      padding: 40px 20px 40px;
       display: flex;
       flex-direction: column;
       gap: 32px;
@@ -50,31 +50,35 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
+    /* >>> UPDATED LOGO STYLE <<< */
     .brand img {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
       object-fit: contain;
+      background-color: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+      padding: 6px; /* gives it a clean framed look */
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
     }
 
     .brand-name {
       font-weight: 600;
-      letter-spacing: 0.12em;
-      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      font-size: 0.95rem;
       text-transform: uppercase;
     }
 
     .brand-tagline {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -100,6 +104,11 @@
       header {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .brand img {
+        width: 80px;
+        height: 80px;
       }
     }
 
@@ -217,7 +226,6 @@
         </div>
       </div>
 
-      <!-- About removed -->
       <nav></nav>
     </header>
 
@@ -226,11 +234,11 @@
         <div class="hero-pill">Consulting & Solutions</div>
 
         <h1 class="hero-title">
-          Purple Ocean streamlines operations and grows through smart solutions.
+          Streamlines operations and grows through smart solutions.
         </h1>
 
         <p class="hero-sub">
-          We work with companies to simplify processes, reduce friction, and support sustainable growth.
+          We work with organizations to simplify processes, reduce friction, and support sustainable growth.
         </p>
 
         <ul class="hero-list">
