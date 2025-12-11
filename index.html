@@ -67,8 +67,8 @@
     }
 
     .brand-mark {
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 20px;
       padding: 6px;
       display: flex;
@@ -76,26 +76,15 @@
       justify-content: center;
       background: radial-gradient(circle at 20% 0%, #7a3cff, #2a155f);
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
-      position: relative;
       overflow: hidden;
     }
 
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #14162f, #151732);
-      opacity: 0.95;
-    }
-
-    .brand-mark span {
-      position: relative;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #f9f5ff;
+    .brand-mark img.brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #111328;
     }
 
     .brand-text {
@@ -416,7 +405,7 @@
     <header>
       <div class="brand">
         <div class="brand-mark">
-          <span>PO</span>
+          <img src="logo.png" alt="Purple Ocean logo" class="brand-logo-img">
         </div>
         <div class="brand-text">
           <div class="brand-name">Purple Ocean</div>
@@ -446,8 +435,8 @@
 
             <ul class="hero-list">
               <li><span class="bullet">•</span><span>Process review and improvement tailored to your reality.</span></li>
-              <li><span class="bullet">•</span><span>Brand strategy and positioning that defines who you are</span></li>
-              <li><span class="bullet">•</span><span>Practical marketing support designed for real business goals..</span></li>
+              <li><span class="bullet">•</span><span>Brand strategy and positioning that defines who you are.</span></li>
+              <li><span class="bullet">•</span><span>Practical marketing support designed for real business goals.</span></li>
             </ul>
 
             <div class="hero-actions">
