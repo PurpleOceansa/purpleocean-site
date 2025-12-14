@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,12 +18,6 @@
 
       --text:#f6f7ff;
       --muted:#a6a9c7;
-
-      --stroke: rgba(255,255,255,0.10);
-      --stroke2: rgba(255,255,255,0.06);
-
-      --glass: rgba(255,255,255,0.05);
-      --glass2: rgba(255,255,255,0.03);
 
       --a:#8b5cf6;
       --b:#22d3ee;
@@ -53,9 +46,10 @@
                   radial-gradient(900px 700px at 80% 92%, rgba(255,79,216,0.08), transparent 60%),
                   linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* animated “wow” background blobs */
     .bgFX{
       position: fixed;
       inset: -20vh -20vw;
@@ -70,7 +64,6 @@
       height: 52vw;
       border-radius: 999px;
       mix-blend-mode: screen;
-      transform: translate3d(0,0,0);
       will-change: transform;
       opacity: 0.18;
       background: radial-gradient(circle at 30% 30%, var(--a), transparent 60%);
@@ -90,21 +83,10 @@
       background: radial-gradient(circle at 35% 35%, var(--c), transparent 60%);
       animation: float3 18s var(--ease) infinite alternate;
     }
+    @keyframes float1{ from{ transform: translate(6vw, 4vh) scale(1);} to{ transform: translate(22vw, 18vh) scale(1.08);} }
+    @keyframes float2{ from{ transform: translate(56vw, 10vh) scale(1);} to{ transform: translate(36vw, 26vh) scale(1.12);} }
+    @keyframes float3{ from{ transform: translate(40vw, 58vh) scale(1);} to{ transform: translate(8vw, 44vh) scale(1.10);} }
 
-    @keyframes float1{
-      from{ transform: translate(6vw, 4vh) scale(1); }
-      to  { transform: translate(22vw, 18vh) scale(1.08); }
-    }
-    @keyframes float2{
-      from{ transform: translate(56vw, 10vh) scale(1); }
-      to  { transform: translate(36vw, 26vh) scale(1.12); }
-    }
-    @keyframes float3{
-      from{ transform: translate(40vw, 58vh) scale(1); }
-      to  { transform: translate(8vw, 44vh) scale(1.10); }
-    }
-
-    /* subtle grain */
     body::before{
       content:"";
       position:fixed;
@@ -125,7 +107,7 @@
       padding: 22px var(--pad) 90px;
     }
 
-    /* ===== Header (sleek + animated underline) ===== */
+    /* ===== Header ===== */
     .top{
       position: sticky;
       top: 0;
@@ -143,12 +125,8 @@
       justify-content:space-between;
       gap: 12px;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 240px;
-    }
+
+    .brand{ display:flex; align-items:center; gap: 12px; min-width: 240px; }
     .mark{
       width: 44px; height: 44px;
       border-radius: 16px;
@@ -163,6 +141,7 @@
       display:grid;
       place-items:center;
       position:relative;
+      flex: 0 0 auto;
     }
     .mark::after{
       content:"";
@@ -170,24 +149,9 @@
       background: radial-gradient(280px 200px at 10% 0%, rgba(255,255,255,0.10), transparent 55%);
       pointer-events:none;
     }
-    .mark img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      background: rgba(10,12,30,0.35);
-    }
-    .brandName{
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-      line-height: 1.05;
-    }
-    .brandTag{
-      margin-top:2px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
+    .mark img{ width:100%; height:100%; object-fit:contain; background: rgba(10,12,30,0.35); }
+    .brandName{ font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.92rem; line-height: 1.05; }
+    .brandTag{ margin-top:2px; font-size: 0.86rem; color: var(--muted); }
 
     .nav{
       display:flex;
@@ -198,25 +162,20 @@
       color: var(--muted);
       font-size: 0.93rem;
     }
-    .nav a, .nav button{
+    .nav a{
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid transparent;
-      background: transparent;
-      color: inherit;
-      cursor:pointer;
       transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease);
       outline:none;
       position:relative;
+      white-space:nowrap;
     }
     .nav a::after{
       content:"";
       position:absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 5px;
-      height: 2px;
-      border-radius: 999px;
+      left: 12px; right: 12px; bottom: 5px;
+      height: 2px; border-radius: 999px;
       background: linear-gradient(90deg, var(--a), var(--b));
       transform: scaleX(0);
       transform-origin: left;
@@ -230,7 +189,7 @@
       color: var(--text);
     }
     .nav a:hover::after{ transform: scaleX(1); }
-    .nav a:focus-visible, .nav button:focus-visible{
+    .nav a:focus-visible{
       border-color: rgba(34,211,238,0.55);
       box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
       color: var(--text);
@@ -241,11 +200,11 @@
       background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(34,211,238,0.78));
       box-shadow: 0 16px 36px rgba(0,0,0,0.46);
       overflow:hidden;
+      position:relative;
     }
     .nav .cta::before{
       content:"";
-      position:absolute;
-      inset:-2px;
+      position:absolute; inset:-2px;
       background: conic-gradient(from 120deg, rgba(255,255,255,0.0), rgba(255,255,255,0.22), rgba(255,255,255,0.0));
       transform: translateX(-60%);
       opacity: 0.7;
@@ -253,42 +212,14 @@
     }
     .nav .cta:hover::before{ transform: translateX(60%); }
 
-    /* mobile */
-    .menuBtn{ display:none; gap:8px; align-items:center; }
-    .menuBtn svg{ width:18px; height:18px; }
-    .drawer{
-      display:none;
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 var(--pad) 14px;
-    }
-    .drawerInner{
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.035);
-      border-radius: 20px;
-      padding: 10px;
-      box-shadow: var(--shadow2);
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .drawerInner a{
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      color: rgba(230,232,255,0.92);
-    }
-    .drawerInner a:hover{
-      border-color: rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    @media (max-width: 820px){
-      .nav{ display:none; }
-      .menuBtn{ display:inline-flex; }
-      .drawer{ display:block; }
+    /* Mobile header UX */
+    @media (max-width: 680px){
+      .brand{ min-width: 0; }
+      .brandTag{ display:none; }
+      .nav a:not(.cta){ display:none; }
     }
 
-    /* ===== Hero (wow) ===== */
+    /* ===== Hero ===== */
     .hero{
       margin-top: 16px;
       border-radius: calc(var(--r) + 8px);
@@ -312,7 +243,6 @@
       z-index:0;
     }
 
-    /* cursor spotlight on hero */
     .spot{
       position:absolute;
       inset:-1px;
@@ -322,6 +252,7 @@
       opacity: 0.85;
       transition: opacity .2s var(--ease);
     }
+    @media (hover: none){ .spot{ display:none; } }
 
     .heroInner{
       position:relative;
@@ -343,6 +274,7 @@
       padding: clamp(16px, 2.6vw, 22px);
       position:relative;
       overflow:hidden;
+      min-width: 0;
     }
     .heroMain::after{
       content:"";
@@ -376,7 +308,7 @@
 
     h1{
       margin: 14px 0 10px;
-      font-size: clamp(2.35rem, 4.4vw, 3.35rem);
+      font-size: clamp(2.05rem, 5.2vw, 3.35rem);
       line-height: 1.02;
       letter-spacing: -0.05em;
     }
@@ -390,17 +322,12 @@
     .sub{
       margin: 0 0 16px;
       color: var(--muted);
-      font-size: 1.06rem;
-      line-height: 1.8;
+      font-size: 1.04rem;
+      line-height: 1.85;
       max-width: 70ch;
     }
 
-    .microRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      margin: 14px 0 2px;
-    }
+    .microRow{ display:flex; flex-wrap:wrap; gap: 8px; margin: 14px 0 2px; }
     .chip{
       display:inline-flex;
       align-items:center;
@@ -414,11 +341,7 @@
       line-height:1;
       user-select:none;
     }
-    .chip i{
-      width: 7px; height:7px; border-radius:999px;
-      background: var(--a);
-      box-shadow: 0 0 0 6px rgba(139,92,246,0.10);
-    }
+    .chip i{ width: 7px; height:7px; border-radius:999px; background: var(--a); box-shadow: 0 0 0 6px rgba(139,92,246,0.10); }
     .chip.alt i{ background: var(--b); box-shadow: 0 0 0 6px rgba(34,211,238,0.10); }
     .chip.pink i{ background: var(--c); box-shadow: 0 0 0 6px rgba(255,79,216,0.10); }
 
@@ -433,11 +356,7 @@
       font-size: 0.98rem;
       line-height:1.65;
     }
-    .bullets li{
-      display:flex;
-      align-items:flex-start;
-      gap: 10px;
-    }
+    .bullets li{ display:flex; align-items:flex-start; gap: 10px; }
     .tick{
       width: 26px; height: 26px;
       border-radius: 11px;
@@ -451,13 +370,7 @@
     }
     .tick svg{ width: 15px; height: 15px; }
 
-    .actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top: 4px;
-    }
+    .actions{ display:flex; gap: 10px; flex-wrap:wrap; align-items:center; margin-top: 4px; }
     .btn{
       display:inline-flex;
       align-items:center;
@@ -476,6 +389,7 @@
       white-space:nowrap;
       position:relative;
       overflow:hidden;
+      touch-action: manipulation;
     }
     .btn:hover{
       transform: translateY(-2px);
@@ -483,6 +397,7 @@
       background: rgba(255,255,255,0.04);
       box-shadow: 0 18px 46px rgba(0,0,0,0.40);
     }
+    .btn:active{ transform: translateY(0); }
     .btn:focus-visible{
       border-color: rgba(34,211,238,0.55);
       box-shadow: 0 0 0 4px rgba(34,211,238,0.12), 0 18px 46px rgba(0,0,0,0.40);
@@ -502,12 +417,14 @@
       transition: transform .60s var(--ease);
     }
     .btnPrimary:hover::before{ transform: translateX(60%); }
-
     .btnGhost{ color: rgba(230,232,255,0.90); }
-
     .btn svg{ width: 16px; height:16px; opacity:.95; }
 
-    /* hero art / orb */
+    @media (max-width: 520px){
+      .btn{ width: 100%; }
+    }
+
+    /* ===== Right panel ===== */
     .heroArt{
       border-radius: var(--r);
       border: 1px solid rgba(255,255,255,0.10);
@@ -519,9 +436,9 @@
       flex-direction:column;
       justify-content:space-between;
       padding: 16px;
-      min-height: 100%;
       transform-style: preserve-3d;
       will-change: transform;
+      min-width: 0;
     }
     .heroArt::before{
       content:"";
@@ -536,11 +453,10 @@
     }
     .heroArt > *{ position:relative; z-index:1; }
 
-    .orbWrap{
-      display:grid;
-      place-items:center;
-      padding: 12px 0 6px;
-    }
+    /* Safety net: never allow huge SVGs in the right panel */
+    .heroArt svg{ width: 18px; height: 18px; display:block; }
+
+    .orbWrap{ display:grid; place-items:center; padding: 10px 0 4px; }
     .orb{
       width: min(340px, 100%);
       aspect-ratio: 1 / 1;
@@ -549,6 +465,7 @@
       display:grid;
       place-items:center;
       transform: translateZ(20px);
+      overflow:hidden;
     }
     .orb::before{
       content:"";
@@ -579,38 +496,31 @@
     @keyframes spin{ to{ transform: rotate(360deg); } }
     @keyframes orbPulse{ from{ transform: scale(1); } to{ transform: scale(1.03); } }
 
-    .orbLabel{
+    /* ✅ Orb logo (po.svg) centered */
+    .orbLogo{
       position:absolute;
-      bottom: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 12px;
+      left:50%;
+      top:50%;
+      transform: translate(-50%, -50%);
+      width: min(180px, 55%);
+      aspect-ratio: 1 / 1;
+      display:grid;
+      place-items:center;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(10,12,30,0.55);
+      background: rgba(10,12,30,0.40);
       backdrop-filter: blur(10px);
-      color: rgba(230,232,255,0.92);
-      font-weight: 700;
-      letter-spacing: -0.01em;
       box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      user-select:none;
+      overflow:hidden;
     }
-    .pulseDot{
-      width: 8px; height:8px; border-radius:999px;
-      background: var(--b);
-      box-shadow: 0 0 0 7px rgba(34,211,238,0.12);
-      animation: dot 1.6s var(--ease) infinite alternate;
+    .orbLogo img{
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+      display:block;
     }
-    @keyframes dot{ from{ transform: scale(1); } to{ transform: scale(1.25); } }
 
-    .miniList{
-      display:grid;
-      gap: 10px;
-      margin-top: 6px;
-    }
+    .miniList{ display:grid; gap: 10px; margin-top: 10px; }
     .miniItem{
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.08);
@@ -635,60 +545,21 @@
       border: 1px solid rgba(139,92,246,0.18);
       flex: 0 0 auto;
     }
-    .miniIcon.alt{
-      background: rgba(34,211,238,0.10);
-      border-color: rgba(34,211,238,0.18);
-    }
-    .miniIcon.pink{
-      background: rgba(255,79,216,0.10);
-      border-color: rgba(255,79,216,0.18);
-    }
-    .miniIcon svg{ width: 18px; height:18px; opacity:.95; }
-    .miniItem b{
-      display:block;
-      margin: 0 0 2px;
-      letter-spacing: -0.01em;
-      font-size: 0.98rem;
-    }
-    .miniItem span{
-      display:block;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 0.92rem;
-    }
+    .miniIcon.alt{ background: rgba(34,211,238,0.10); border-color: rgba(34,211,238,0.18); }
+    .miniIcon.pink{ background: rgba(255,79,216,0.10); border-color: rgba(255,79,216,0.18); }
+    .miniIcon svg{ width: 18px; height:18px; }
+    .miniItem b{ display:block; margin: 0 0 2px; letter-spacing: -0.01em; font-size: 0.98rem; }
+    .miniItem span{ display:block; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
 
     /* ===== Sections ===== */
     .section{ margin-top: 28px; }
-    .head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 14px;
-      margin: 18px 0 12px;
-    }
-    .head h2{
-      margin:0;
-      font-size: 1.40rem;
-      letter-spacing:-0.02em;
-    }
-    .head p{
-      margin:0;
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height:1.6;
-      max-width: 70ch;
-    }
+    .head{ display:flex; align-items:flex-end; justify-content:space-between; gap: 14px; margin: 18px 0 12px; }
+    .head h2{ margin:0; font-size: 1.40rem; letter-spacing:-0.02em; }
+    .head p{ margin:0; color: var(--muted); font-size: 0.98rem; line-height:1.6; max-width: 70ch; }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-    }
+    .grid{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
 
-    /* “wow cards” with subtle tilt + shine */
     .card{
       border-radius: var(--r2);
       border: 1px solid rgba(255,255,255,0.10);
@@ -711,10 +582,7 @@
       transition: opacity .18s var(--ease);
       pointer-events:none;
     }
-    .card:hover{
-      border-color: rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.055);
-    }
+    .card:hover{ border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.055); }
     .card:hover::before{ opacity: 1; }
 
     .label{
@@ -731,30 +599,13 @@
       color: rgba(232,231,255,0.95);
       user-select:none;
     }
-    .label i{
-      width: 7px; height: 7px; border-radius: 999px;
-      background: var(--a);
-      box-shadow: 0 0 0 6px rgba(139,92,246,0.10);
-    }
+    .label i{ width: 7px; height: 7px; border-radius: 999px; background: var(--a); box-shadow: 0 0 0 6px rgba(139,92,246,0.10); }
     .label.alt i{ background: var(--b); box-shadow: 0 0 0 6px rgba(34,211,238,0.10); }
     .label.pink i{ background: var(--c); box-shadow: 0 0 0 6px rgba(255,79,216,0.10); }
 
-    .card h3{
-      margin: 12px 0 6px;
-      font-size: 1.05rem;
-      letter-spacing:-0.01em;
-      transform: translateZ(18px);
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height:1.75;
-      max-width: 64ch;
-      transform: translateZ(14px);
-    }
+    .card h3{ margin: 12px 0 6px; font-size: 1.05rem; letter-spacing:-0.01em; transform: translateZ(18px); }
+    .card p{ margin:0; color: var(--muted); font-size: 0.95rem; line-height:1.75; max-width: 64ch; transform: translateZ(14px); }
 
-    /* Stepper */
     .stepper{
       border-radius: var(--r);
       border: 1px solid rgba(255,255,255,0.10);
@@ -781,20 +632,9 @@
       background: rgba(255,255,255,0.03);
       color: rgba(233,231,255,0.95);
     }
-    .step b{
-      display:block;
-      margin: 2px 0 4px;
-      letter-spacing: -0.01em;
-    }
-    .step span{
-      display:block;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.94rem;
-      max-width: 80ch;
-    }
+    .step b{ display:block; margin: 2px 0 4px; letter-spacing: -0.01em; }
+    .step span{ display:block; color: var(--muted); line-height: 1.65; font-size: 0.94rem; max-width: 80ch; }
 
-    /* CTA */
     .ctaBlock{
       margin-top: 22px;
       border-radius: calc(var(--r) + 6px);
@@ -827,17 +667,8 @@
       gap: 12px;
       flex-wrap:wrap;
     }
-    .ctaInner h3{
-      margin:0;
-      font-size: 1.22rem;
-      letter-spacing:-0.01em;
-    }
-    .ctaInner p{
-      margin: 6px 0 0;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 74ch;
-    }
+    .ctaInner h3{ margin:0; font-size: 1.22rem; letter-spacing:-0.01em; }
+    .ctaInner p{ margin: 6px 0 0; color: var(--muted); line-height: 1.75; max-width: 74ch; }
 
     footer{
       padding: 26px var(--pad) 28px;
@@ -855,15 +686,9 @@
     }
     .foot a{ text-decoration:underline; color:#e9e7ff; }
 
-    /* reveal */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .55s var(--ease), transform .55s var(--ease);
-    }
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
     .reveal.on{ opacity:1; transform:none; }
 
-    /* toast */
     .toast{
       position: fixed;
       left: 50%;
@@ -883,14 +708,14 @@
       align-items:center;
       gap:10px;
       transition: opacity .22s var(--ease), transform .22s var(--ease);
+      max-width: calc(100vw - 24px);
     }
     .toast.on{ opacity:1; transform: translateX(-50%) translateY(0); }
     .toast svg{ width:16px; height:16px; color: var(--b); }
 
-    /* reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
-      .blob, .orb::after, .orb::before, .pulseDot{ animation:none !important; }
+      .blob, .orb::after, .orb::before{ animation:none !important; }
       .reveal{ opacity:1; transform:none; transition:none; }
       .btn, .nav a, .card, .miniItem{ transition:none; }
       .spot{ display:none; }
@@ -899,20 +724,16 @@
 </head>
 
 <body>
-  <!-- WOW BACKGROUND -->
   <div class="bgFX" aria-hidden="true">
     <div class="blob"></div>
     <div class="blob b2"></div>
     <div class="blob b3"></div>
   </div>
 
-  <!-- HEADER -->
   <header class="top" id="top">
     <div class="topInner">
       <a class="brand" href="#top" aria-label="Purple Ocean home">
-        <div class="mark" aria-hidden="true">
-          <img src="logo.png" alt="">
-        </div>
+        <div class="mark" aria-hidden="true"><img src="logo.png" alt=""></div>
         <div>
           <div class="brandName">Purple Ocean</div>
           <div class="brandTag">Better clarity. Better outcomes.</div>
@@ -920,32 +741,15 @@
       </a>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="#about" data-nav>About</a>
-        <a href="#focus" data-nav>Focus</a>
-        <a href="#how" data-nav>How we work</a>
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#how">How we work</a>
         <a class="cta" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)">Contact</a>
       </nav>
-
-      <button class="btn menuBtn" id="menuBtn" aria-expanded="false" aria-controls="drawer" type="button">
-        <span>Menu</span>
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="drawer" id="drawer" hidden>
-      <div class="drawerInner" role="navigation" aria-label="Mobile navigation">
-        <a href="#about" data-nav-mobile>About</a>
-        <a href="#focus" data-nav-mobile>Focus</a>
-        <a href="#how" data-nav-mobile>How we work</a>
-        <a href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)">Contact</a>
-      </div>
     </div>
   </header>
 
   <main class="wrap">
-    <!-- HERO -->
     <section class="hero reveal" id="hero" aria-label="Hero">
       <div class="spot" id="spot" aria-hidden="true"></div>
 
@@ -953,9 +757,7 @@
         <div class="heroMain">
           <div class="pill"><span class="dot" aria-hidden="true"></span> Consulting</div>
 
-          <h1>
-            Growth shouldn’t <span class="grad">feel chaotic.</span>
-          </h1>
+          <h1>Growth shouldn’t <span class="grad">feel chaotic.</span></h1>
 
           <p class="sub">
             Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.
@@ -968,30 +770,17 @@
           </div>
 
           <ul class="bullets">
-            <li>
-              <span class="tick" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span>Clear positioning and messaging that people understand fast</span>
-            </li>
-            <li>
-              <span class="tick" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span>Insight-driven marketing direction based on what the data is actually saying</span>
-            </li>
-            <li>
-              <span class="tick" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span>Less noise, cleaner execution, and stronger consistency across channels</span>
-            </li>
+            <li><span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span><span>Clear positioning and messaging that people understand fast</span></li>
+
+            <li><span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span><span>Insight-driven marketing direction based on what the data is actually saying</span></li>
+
+            <li><span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span><span>Less noise, cleaner execution, and stronger consistency across channels</span></li>
           </ul>
 
           <div class="actions">
@@ -1015,7 +804,10 @@
         <aside class="heroArt" id="tiltHero" aria-label="Highlights">
           <div class="orbWrap">
             <div class="orb" aria-hidden="true">
-              <div class="orbLabel"><span class="pulseDot" aria-hidden="true"></span> Better clarity → better outcomes</div>
+              <!-- ✅ Replaced text with centered po.svg -->
+              <div class="orbLogo" aria-hidden="true">
+                <img src="po.svg" alt="">
+              </div>
             </div>
           </div>
 
@@ -1027,10 +819,7 @@
                   <path d="M20 7v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div>
-                <b>Clarity on priorities</b>
-                <span>What to focus on, what to stop, and what to test next.</span>
-              </div>
+              <div><b>Clarity on priorities</b><span>What to focus on, what to stop, and what to test next.</span></div>
             </div>
 
             <div class="miniItem">
@@ -1041,10 +830,7 @@
                   <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div>
-                <b>Evidence-based direction</b>
-                <span>Decisions grounded in performance signals and customer behavior.</span>
-              </div>
+              <div><b>Evidence-based direction</b><span>Decisions grounded in performance signals and customer behavior.</span></div>
             </div>
 
             <div class="miniItem">
@@ -1054,111 +840,40 @@
                   <path d="M5 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
                 </svg>
               </div>
-              <div>
-                <b>Cleaner execution</b>
-                <span>Simple structure that keeps teams aligned across channels.</span>
-              </div>
+              <div><b>Cleaner execution</b><span>Simple structure that keeps teams aligned across channels.</span></div>
             </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about" class="section reveal" aria-label="About">
-      <div class="head">
-        <div>
-          <h2>About</h2>
-          <p>Professional, business-first support — without the fluff.</p>
-        </div>
-      </div>
-
+      <div class="head"><div><h2>About</h2><p>Professional, business-first support — without the fluff.</p></div></div>
       <div class="grid">
-        <div class="card" data-tilt>
-          <div class="label"><i></i> Direction</div>
-          <h3>Clearer decisions</h3>
-          <p>We help leadership teams reduce complexity and choose a focused path forward.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label alt"><i></i> Standards</div>
-          <h3>Stronger execution</h3>
-          <p>We support consistent marketing execution that looks premium and performs.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label pink"><i></i> Simplicity</div>
-          <h3>Smoother operations</h3>
-          <p>We simplify workflows and decision flow so teams move faster with less friction.</p>
-        </div>
+        <div class="card" data-tilt><div class="label"><i></i> Direction</div><h3>Clearer decisions</h3><p>We help leadership teams reduce complexity and choose a focused path forward.</p></div>
+        <div class="card" data-tilt><div class="label alt"><i></i> Standards</div><h3>Stronger execution</h3><p>We support consistent marketing execution that looks premium and performs.</p></div>
+        <div class="card" data-tilt><div class="label pink"><i></i> Simplicity</div><h3>Smoother operations</h3><p>We simplify workflows and decision flow so teams move faster with less friction.</p></div>
       </div>
     </section>
 
-    <!-- FOCUS -->
     <section id="focus" class="section reveal" aria-label="Focus">
-      <div class="head">
-        <div>
-          <h2>What we focus on</h2>
-          <p>General on purpose — centered on outcomes that compound.</p>
-        </div>
-      </div>
-
+      <div class="head"><div><h2>What we focus on</h2><p>General on purpose — centered on outcomes that compound.</p></div></div>
       <div class="grid">
-        <div class="card" data-tilt>
-          <div class="label"><i></i> Clarity</div>
-          <h3>Make the message obvious</h3>
-          <p>We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label alt"><i></i> Analysis</div>
-          <h3>See what to improve next</h3>
-          <p>We review performance, customer journey, and market signals to identify what to change.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label pink"><i></i> Marketing direction</div>
-          <h3>Fewer, stronger moves</h3>
-          <p>We translate insights into priorities: what to focus on, what to stop, and what to test.</p>
-        </div>
+        <div class="card" data-tilt><div class="label"><i></i> Clarity</div><h3>Make the message obvious</h3><p>We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p></div>
+        <div class="card" data-tilt><div class="label alt"><i></i> Analysis</div><h3>See what to improve next</h3><p>We review performance, customer journey, and market signals to identify what to change.</p></div>
+        <div class="card" data-tilt><div class="label pink"><i></i> Marketing direction</div><h3>Fewer, stronger moves</h3><p>We translate insights into priorities: what to focus on, what to stop, and what to test.</p></div>
       </div>
     </section>
 
-    <!-- HOW WE WORK (WOW stepper) -->
     <section id="how" class="section reveal" aria-label="How we work">
-      <div class="head">
-        <div>
-          <h2>How we work</h2>
-          <p>Simple, structured, measurable.</p>
-        </div>
-      </div>
-
+      <div class="head"><div><h2>How we work</h2><p>Simple, structured, measurable.</p></div></div>
       <div class="stepper">
-        <div class="step">
-          <div class="num">01</div>
-          <div>
-            <b>Understand the business</b>
-            <span>We start with the business reality: goals, constraints, performance signals, and what success must look like.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">02</div>
-          <div>
-            <b>Reduce complexity to priorities</b>
-            <span>We compress everything into a few high-impact moves — clear direction, clear owners, and clear measurement.</span>
-          </div>
-        </div>
-        <div class="step">
-          <div class="num">03</div>
-          <div>
-            <b>Execute with consistency</b>
-            <span>Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</span>
-          </div>
-        </div>
+        <div class="step"><div class="num">01</div><div><b>Understand the business</b><span>We start with the business reality: goals, constraints, performance signals, and what success must look like.</span></div></div>
+        <div class="step"><div class="num">02</div><div><b>Reduce complexity to priorities</b><span>We compress everything into a few high-impact moves — clear direction, clear owners, and clear measurement.</span></div></div>
+        <div class="step"><div class="num">03</div><div><b>Execute with consistency</b><span>Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</span></div></div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="ctaBlock reveal" aria-label="Contact CTA">
       <div class="ctaInner">
         <div>
@@ -1177,14 +892,10 @@
   <footer>
     <div class="foot">
       <div>
-        <div style="color:var(--text); font-weight:800;">
-          © <span id="year"></span> Purple Ocean
-        </div>
+        <div style="color:var(--text); font-weight:800;">© <span id="year"></span> Purple Ocean</div>
         <small>Based in Saudi Arabia • <a href="mailto:info@purpleocean.sa">info@purpleocean.sa</a></small>
       </div>
-      <div>
-        <small style="opacity:0.9;">Better clarity. Better outcomes.</small>
-      </div>
+      <div><small style="opacity:0.9;">Better clarity. Better outcomes.</small></div>
     </div>
   </footer>
 
@@ -1196,21 +907,7 @@
   </div>
 
   <script>
-    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Mobile menu
-    const menuBtn = document.getElementById("menuBtn");
-    const drawer = document.getElementById("drawer");
-    function setDrawer(open){
-      menuBtn.setAttribute("aria-expanded", String(open));
-      drawer.hidden = !open;
-    }
-    menuBtn?.addEventListener("click", () => {
-      const open = menuBtn.getAttribute("aria-expanded") === "true";
-      setDrawer(!open);
-    });
-    document.querySelectorAll("[data-nav-mobile]").forEach(a => a.addEventListener("click", () => setDrawer(false)));
 
     // Reveal
     const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1224,10 +921,11 @@
       reveals.forEach(el => el.classList.add("on"));
     }
 
-    // Hero spotlight follows cursor (big WOW feel)
+    // Hero spotlight (desktop only)
     const hero = document.getElementById("hero");
     const spot = document.getElementById("spot");
-    if (!prefersReduced && hero && spot) {
+    const canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+    if (!prefersReduced && hero && spot && canHover) {
       hero.addEventListener("pointermove", (e) => {
         const r = hero.getBoundingClientRect();
         const x = ((e.clientX - r.left) / r.width) * 100;
@@ -1266,29 +964,22 @@
       }
     });
 
-    // Smooth tilt for hero panel + cards (agency polish)
+    // Tilt (desktop only)
     function attachTilt(el, max=8){
       if (!el || prefersReduced) return;
+      if (!canHover) return;
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
         const py = (e.clientY - r.top) / r.height;
-
         const rx = (py - 0.5) * -max;
         const ry = (px - 0.5) * max;
-
         el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-        el.style.setProperty("--cx", (px * 100) + "%");
-        el.style.setProperty("--cy", (py * 100) + "%");
       });
-      el.addEventListener("pointerleave", () => {
-        el.style.transform = "";
-      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
     }
-
     attachTilt(document.getElementById("tiltHero"), 6);
     document.querySelectorAll("[data-tilt]").forEach(card => attachTilt(card, 7));
   </script>
 </body>
 </html>
-```
