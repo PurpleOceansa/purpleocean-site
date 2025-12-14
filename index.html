@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +9,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Inter + Arabic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -48,6 +49,11 @@
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Arabic typography */
+    html[dir="rtl"] body{
+      font-family: Tajawal, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     .bgFX{
@@ -194,6 +200,32 @@
       box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
       color: var(--text);
     }
+
+    /* Language button */
+    .langBtn{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: rgba(230,232,255,0.92);
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
+      white-space: nowrap;
+      user-select:none;
+    }
+    .langBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .langBtn:focus-visible{
+      outline:none;
+      border-color: rgba(34,211,238,0.55);
+      box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
+      color: var(--text);
+    }
+
     .nav .cta{
       border:0;
       color:#fff;
@@ -216,7 +248,7 @@
     @media (max-width: 680px){
       .brand{ min-width: 0; }
       .brandTag{ display:none; }
-      .nav a:not(.cta){ display:none; }
+      .nav a:not(.cta){ display:none; } /* keep langBtn + Contact */
     }
 
     /* ===== Hero ===== */
@@ -282,28 +314,6 @@
       inset:-1px;
       background: radial-gradient(360px 220px at 12% 0%, rgba(255,255,255,0.08), transparent 60%);
       pointer-events:none;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      color:#e9e7ff;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      width: fit-content;
-      user-select:none;
-    }
-    .pill .dot{
-      width: 7px; height:7px;
-      border-radius: 999px;
-      background: var(--b);
-      box-shadow: 0 0 0 6px rgba(34,211,238,0.10);
     }
 
     h1{
@@ -381,7 +391,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.03);
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
       cursor:pointer;
       transition: transform .16s var(--ease), border-color .16s var(--ease), background .16s var(--ease), box-shadow .16s var(--ease);
@@ -453,7 +463,7 @@
     }
     .heroArt > *{ position:relative; z-index:1; }
 
-    /* Safety net: never allow huge SVGs in the right panel */
+    /* Safety net */
     .heroArt svg{ width: 18px; height: 18px; display:block; }
 
     .orbWrap{ display:grid; place-items:center; padding: 10px 0 4px; }
@@ -496,7 +506,6 @@
     @keyframes spin{ to{ transform: rotate(360deg); } }
     @keyframes orbPulse{ from{ transform: scale(1); } to{ transform: scale(1.03); } }
 
-    /* ✅ Orb logo (po.svg) centered */
     .orbLogo{
       position:absolute;
       left:50%;
@@ -684,7 +693,6 @@
       gap: 12px;
       flex-wrap:wrap;
     }
-    .foot a{ text-decoration:underline; color:#e9e7ff; }
 
     .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
     .reveal.on{ opacity:1; transform:none; }
@@ -717,8 +725,24 @@
       html{ scroll-behavior:auto; }
       .blob, .orb::after, .orb::before{ animation:none !important; }
       .reveal{ opacity:1; transform:none; transition:none; }
-      .btn, .nav a, .card, .miniItem{ transition:none; }
+      .btn, .nav a, .card, .miniItem, .langBtn{ transition:none; }
       .spot{ display:none; }
+    }
+
+    /* ===== RTL tweaks (Arabic) ===== */
+    html[dir="rtl"] .topInner{ flex-direction: row-reverse; }
+    html[dir="rtl"] .nav{ justify-content: flex-start; }
+    html[dir="rtl"] .brand{ text-align:right; }
+    html[dir="rtl"] .microRow{ flex-direction: row-reverse; }
+    html[dir="rtl"] .bullets li{ flex-direction: row-reverse; }
+    html[dir="rtl"] .actions{ flex-direction: row-reverse; }
+    html[dir="rtl"] .ctaInner{ flex-direction: row-reverse; }
+    html[dir="rtl"] .foot{ flex-direction: row-reverse; }
+
+    /* Swap hero columns on wide screens for Arabic (right-to-left reading) */
+    @media (min-width: 981px){
+      html[dir="rtl"] .heroMain{ order: 2; }
+      html[dir="rtl"] .heroArt{ order: 1; }
     }
   </style>
 </head>
@@ -736,15 +760,20 @@
         <div class="mark" aria-hidden="true"><img src="logo.png" alt=""></div>
         <div>
           <div class="brandName">Purple Ocean</div>
-          <div class="brandTag">Better clarity. Better outcomes.</div>
+          <div class="brandTag" data-i18n="brand_tag">Better clarity. Better outcomes.</div>
         </div>
       </a>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="#about">About</a>
-        <a href="#focus">Focus</a>
-        <a href="#how">How we work</a>
-        <a class="cta" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)">Contact</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#focus" data-i18n="nav_focus">Focus</a>
+        <a href="#how" data-i18n="nav_how">How we work</a>
+
+        <button class="langBtn" id="langBtn" type="button" aria-label="Switch language">عربي</button>
+
+        <a class="cta" id="navContact" data-mailto="inquiry" href="#">
+          <span data-i18n="nav_contact">Contact</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -755,44 +784,42 @@
 
       <div class="heroInner">
         <div class="heroMain">
-        
+          <h1 data-i18n="hero_title">Growth shouldn’t <span class="grad">feel chaotic.</span></h1>
 
-          <h1>Growth shouldn’t <span class="grad">feel chaotic.</span></h1>
-
-          <p class="sub">
+          <p class="sub" data-i18n="hero_sub">
             Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.
           </p>
 
           <div class="microRow" aria-label="Key outcomes">
-            <span class="chip"><i aria-hidden="true"></i> Clarity</span>
-            <span class="chip alt"><i aria-hidden="true"></i> Direction</span>
-            <span class="chip pink"><i aria-hidden="true"></i> Execution</span>
+            <span class="chip" data-i18n="chip_clarity"><i aria-hidden="true"></i> Clarity</span>
+            <span class="chip alt" data-i18n="chip_direction"><i aria-hidden="true"></i> Direction</span>
+            <span class="chip pink" data-i18n="chip_execution"><i aria-hidden="true"></i> Execution</span>
           </div>
 
           <ul class="bullets">
             <li><span class="tick" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span><span>Clear positioning and messaging that people understand fast</span></li>
+            </span><span data-i18n="b1">Clear positioning and messaging that people understand fast</span></li>
 
             <li><span class="tick" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span><span>Insight-driven marketing direction based on what the data is actually saying</span></li>
+            </span><span data-i18n="b2">Insight-driven marketing direction based on what the data is actually saying</span></li>
 
             <li><span class="tick" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span><span>Less noise, cleaner execution</span></li>
+            </span><span data-i18n="b3">Less noise, cleaner execution</span></li>
           </ul>
 
           <div class="actions">
-            <a class="btn btnPrimary" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)&body=Hi%20Purple%20Ocean%2C%0A%0AOrganization%3A%20%0AWebsite%2FIG%3A%20%0AWhat%20you%20want%20to%20improve%3A%20%0A%0AThanks%2C">
-              <span style="position:relative; z-index:1;">Contact Us</span>
+            <a class="btn btnPrimary" id="heroContact" data-mailto="inquiry" href="#">
+              <span style="position:relative; z-index:1;" data-i18n="btn_contact">Contact Us</span>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="position:relative; z-index:1;">
                 <path d="M7 17l10-10M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </a>
 
             <button class="btn btnGhost" id="copyEmailBtn" type="button">
-              Copy email
+              <span data-i18n="btn_copy">Copy email</span>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M9 9h10v10H9V9Z" stroke="currentColor" stroke-width="2"/>
                 <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -804,7 +831,6 @@
         <aside class="heroArt" id="tiltHero" aria-label="Highlights">
           <div class="orbWrap">
             <div class="orb" aria-hidden="true">
-              <!-- ✅ Replaced text with centered po.svg -->
               <div class="orbLogo" aria-hidden="true">
                 <img src="po.svg" alt="">
               </div>
@@ -819,7 +845,7 @@
                   <path d="M20 7v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div><b>Clarity on priorities</b><span>What to focus on, and what to test next.</span></div>
+              <div><b data-i18n="m1t">Clarity on priorities</b><span data-i18n="m1s">What to focus on, and what to test next.</span></div>
             </div>
 
             <div class="miniItem">
@@ -830,7 +856,7 @@
                   <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div><b>Evidence-based direction</b><span>Decisions grounded in performance signals and customer behavior.</span></div>
+              <div><b data-i18n="m2t">Evidence-based direction</b><span data-i18n="m2s">Decisions grounded in performance signals and customer behavior.</span></div>
             </div>
 
             <div class="miniItem">
@@ -840,7 +866,7 @@
                   <path d="M5 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
                 </svg>
               </div>
-              <div><b>Cleaner execution</b><span>Simple structure that keeps teams aligned across channels.</span></div>
+              <div><b data-i18n="m3t">Cleaner execution</b><span data-i18n="m3s">Simple structure that keeps teams aligned across channels.</span></div>
             </div>
           </div>
         </aside>
@@ -848,41 +874,79 @@
     </section>
 
     <section id="about" class="section reveal" aria-label="About">
-      <div class="head"><div><h2>About</h2><p></p></div></div>
+      <div class="head"><div><h2 data-i18n="about_title">About</h2><p data-i18n="about_sub">Professional, business-first support — without the fluff.</p></div></div>
       <div class="grid">
-        <div class="card" data-tilt><div class="label"><i></i> Direction</div><h3>Clearer decisions</h3><p>We help leadership teams reduce complexity and choose a focused path forward.</p></div>
-        <div class="card" data-tilt><div class="label alt"><i></i> Standards</div><h3>Stronger execution</h3><p>We support consistent marketing execution that looks premium and performs.</p></div>
-        <div class="card" data-tilt><div class="label pink"><i></i> Simplicity</div><h3>Smoother operations</h3><p>We simplify workflows and decision flow so teams move faster with less friction.</p></div>
+        <div class="card" data-tilt>
+          <div class="label"><i></i> <span data-i18n="a_label1">Direction</span></div>
+          <h3 data-i18n="a_h1">Clearer decisions</h3>
+          <p data-i18n="a_p1">We help leadership teams reduce complexity and choose a focused path forward.</p>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="label alt"><i></i> <span data-i18n="a_label2">Standards</span></div>
+          <h3 data-i18n="a_h2">Stronger execution</h3>
+          <p data-i18n="a_p2">We support consistent marketing execution that looks premium and performs.</p>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="label pink"><i></i> <span data-i18n="a_label3">Simplicity</span></div>
+          <h3 data-i18n="a_h3">Smoother operations</h3>
+          <p data-i18n="a_p3">We simplify workflows and decision flow so teams move faster with less friction.</p>
+        </div>
       </div>
     </section>
 
     <section id="focus" class="section reveal" aria-label="Focus">
-      <div class="head"><div><h2>What we focus on</h2><p></p></div></div>
+      <div class="head"><div><h2 data-i18n="focus_title">What we focus on</h2><p data-i18n="focus_sub">General on purpose — centered on outcomes that compound.</p></div></div>
       <div class="grid">
-        <div class="card" data-tilt><div class="label"><i></i> Clarity</div><h3>Make the message obvious</h3><p>We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p></div>
-        <div class="card" data-tilt><div class="label alt"><i></i> Analysis</div><h3>See what to improve next</h3><p>We review performance, customer journey, and market signals to identify what to change.</p></div>
-        <div class="card" data-tilt><div class="label pink"><i></i> Marketing direction</div><h3>Fewer, stronger moves</h3><p>We translate insights into priorities: what to focus on, what to stop, and what to test.</p></div>
+        <div class="card" data-tilt>
+          <div class="label"><i></i> <span data-i18n="f_label1">Clarity</span></div>
+          <h3 data-i18n="f_h1">Make the message obvious</h3>
+          <p data-i18n="f_p1">We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="label alt"><i></i> <span data-i18n="f_label2">Analysis</span></div>
+          <h3 data-i18n="f_h2">See what to improve next</h3>
+          <p data-i18n="f_p2">We review performance, customer journey, and market signals to identify what to change.</p>
+        </div>
+
+        <div class="card" data-tilt>
+          <div class="label pink"><i></i> <span data-i18n="f_label3">Marketing direction</span></div>
+          <h3 data-i18n="f_h3">Fewer, stronger moves</h3>
+          <p data-i18n="f_p3">We translate insights into priorities: what to focus on, what to stop, and what to test.</p>
+        </div>
       </div>
     </section>
 
     <section id="how" class="section reveal" aria-label="How we work">
-      <div class="head"><div><h2>How we work</h2><p>Simple, structured, measurable.</p></div></div>
+      <div class="head"><div><h2 data-i18n="how_title">How we work</h2><p data-i18n="how_sub">Simple, structured, measurable.</p></div></div>
+
       <div class="stepper">
-        <div class="step"><div class="num">01</div><div><b>Understand the business</b><span>We start with the business reality: goals, performance signals, and what success must look like.</span></div></div>
-        <div class="step"><div class="num">02</div><div><b>Reduce complexity to priorities</b><span>We compress everything into a few high-impact moves — clear direction, and clear measurement.</span></div></div>
-        <div class="step"><div class="num">03</div><div><b>Execute with consistency</b><span>Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</span></div></div>
+        <div class="step">
+          <div class="num">01</div>
+          <div><b data-i18n="s1t">Understand the business</b><span data-i18n="s1s">We start with the business reality: goals, performance signals, and what success must look like.</span></div>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <div><b data-i18n="s2t">Reduce complexity to priorities</b><span data-i18n="s2s">We compress everything into a few high-impact moves — clear direction, and clear measurement.</span></div>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <div><b data-i18n="s3t">Execute with consistency</b><span data-i18n="s3s">Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</span></div>
+        </div>
       </div>
     </section>
 
     <section class="ctaBlock reveal" aria-label="Contact CTA">
       <div class="ctaInner">
         <div>
-          <h3>Want clarity on what to do next?</h3>
-          <p>Send a short intro — we’ll respond with next steps and a simple way to move forward.</p>
+          <h3 data-i18n="cta_title">Want clarity on what to do next?</h3>
+          <p data-i18n="cta_sub">Send a short intro — we’ll respond with next steps and a simple way to move forward.</p>
         </div>
         <div class="actions" style="margin:0;">
-          <a class="btn btnPrimary" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)&body=Hi%20Purple%20Ocean%2C%0A%0AOrganization%3A%20%0AWebsite%2FIG%3A%20%0AWhat%20you%20want%20to%20improve%3A%20%0A%0AThanks%2C">
-            <span style="position:relative; z-index:1;">Contact Us</span>
+          <a class="btn btnPrimary" id="ctaContact" data-mailto="inquiry" href="#">
+            <span style="position:relative; z-index:1;" data-i18n="btn_contact">Contact Us</span>
           </a>
         </div>
       </div>
@@ -892,10 +956,11 @@
   <footer>
     <div class="foot">
       <div>
-        <div style="color:var(--text); font-weight:200;">© <span id="year"></span> Purple Ocean</div>
-       
+        <div style="color:var(--text); font-weight:700;">
+          © <span id="year"></span> Purple Ocean
+        </div>
       </div>
-      <div><small style="opacity:0.9;">Based in Saudi Arabia.</small></div>
+      <div><small style="opacity:0.9;" data-i18n="footer_line">Based in Saudi Arabia.</small></div>
     </div>
   </footer>
 
@@ -903,7 +968,7 @@
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span id="toastText">Copied.</span>
+    <span id="toastText" data-i18n="toast_copied">Copied.</span>
   </div>
 
   <script>
@@ -935,35 +1000,6 @@
       });
     }
 
-    // Copy email + toast
-    const email = "info@purpleocean.sa";
-    const toast = document.getElementById("toast");
-    const toastText = document.getElementById("toastText");
-    let toastTimer;
-    function showToast(text){
-      toastText.textContent = text;
-      toast.classList.add("on");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("on"), 1700);
-    }
-    document.getElementById("copyEmailBtn")?.addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(email);
-        showToast("Email copied: " + email);
-      }catch(e){
-        const t = document.createElement("textarea");
-        t.value = email;
-        t.setAttribute("readonly", "");
-        t.style.position = "absolute";
-        t.style.left = "-9999px";
-        document.body.appendChild(t);
-        t.select();
-        document.execCommand("copy");
-        document.body.removeChild(t);
-        showToast("Email copied: " + email);
-      }
-    });
-
     // Tilt (desktop only)
     function attachTilt(el, max=8){
       if (!el || prefersReduced) return;
@@ -980,6 +1016,250 @@
     }
     attachTilt(document.getElementById("tiltHero"), 6);
     document.querySelectorAll("[data-tilt]").forEach(card => attachTilt(card, 7));
+
+    // Toast
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toastText");
+    let toastTimer;
+    function showToast(text){
+      toastText.textContent = text;
+      toast.classList.add("on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("on"), 1700);
+    }
+
+    // Copy email
+    const email = "info@purpleocean.sa";
+    document.getElementById("copyEmailBtn")?.addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(email);
+        showToast(currentLang === "ar" ? ("تم نسخ البريد: " + email) : ("Email copied: " + email));
+      }catch(e){
+        const t = document.createElement("textarea");
+        t.value = email;
+        t.setAttribute("readonly", "");
+        t.style.position = "absolute";
+        t.style.left = "-9999px";
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand("copy");
+        document.body.removeChild(t);
+        showToast(currentLang === "ar" ? ("تم نسخ البريد: " + email) : ("Email copied: " + email));
+      }
+    });
+
+    // ===== i18n =====
+    const I18N = {
+      en: {
+        title: "Purple Ocean — Better clarity. Better outcomes.",
+        meta_desc: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
+
+        brand_tag: "Better clarity. Better outcomes.",
+
+        nav_about: "About",
+        nav_focus: "Focus",
+        nav_how: "How we work",
+        nav_contact: "Contact",
+
+        hero_title: `Growth shouldn’t <span class="grad">feel chaotic.</span>`,
+        hero_sub: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
+
+        chip_clarity: `<i aria-hidden="true"></i> Clarity`,
+        chip_direction: `<i aria-hidden="true"></i> Direction`,
+        chip_execution: `<i aria-hidden="true"></i> Execution`,
+
+        b1: "Clear positioning and messaging that people understand fast",
+        b2: "Insight-driven marketing direction based on what the data is actually saying",
+        b3: "Less noise, cleaner execution",
+
+        btn_contact: "Contact Us",
+        btn_copy: "Copy email",
+
+        m1t: "Clarity on priorities",
+        m1s: "What to focus on, and what to test next.",
+        m2t: "Evidence-based direction",
+        m2s: "Decisions grounded in performance signals and customer behavior.",
+        m3t: "Cleaner execution",
+        m3s: "Simple structure that keeps teams aligned across channels.",
+
+        about_title: "About",
+        about_sub: "Professional, business-first support — without the fluff.",
+
+        a_label1: "Direction",
+        a_h1: "Clearer decisions",
+        a_p1: "We help leadership teams reduce complexity and choose a focused path forward.",
+        a_label2: "Standards",
+        a_h2: "Stronger execution",
+        a_p2: "We support consistent marketing execution that looks premium and performs.",
+        a_label3: "Simplicity",
+        a_h3: "Smoother operations",
+        a_p3: "We simplify workflows and decision flow so teams move faster with less friction.",
+
+        focus_title: "What we focus on",
+        focus_sub: "General on purpose — centered on outcomes that compound.",
+
+        f_label1: "Clarity",
+        f_h1: "Make the message obvious",
+        f_p1: "We simplify what you do, who it’s for, and why it matters — so people understand you fast.",
+        f_label2: "Analysis",
+        f_h2: "See what to improve next",
+        f_p2: "We review performance, customer journey, and market signals to identify what to change.",
+        f_label3: "Marketing direction",
+        f_h3: "Fewer, stronger moves",
+        f_p3: "We translate insights into priorities: what to focus on, what to stop, and what to test.",
+
+        how_title: "How we work",
+        how_sub: "Simple, structured, measurable.",
+
+        s1t: "Understand the business",
+        s1s: "We start with the business reality: goals, performance signals, and what success must look like.",
+        s2t: "Reduce complexity to priorities",
+        s2s: "We compress everything into a few high-impact moves — clear direction, and clear measurement.",
+        s3t: "Execute with consistency",
+        s3s: "Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.",
+
+        cta_title: "Want clarity on what to do next?",
+        cta_sub: "Send a short intro — we’ll respond with next steps and a simple way to move forward.",
+
+        footer_line: "Based in Saudi Arabia.",
+        toast_copied: "Copied."
+      },
+
+      ar: {
+        title: "Purple Ocean — وضوح أفضل. نتائج أقوى.",
+        meta_desc: "Purple Ocean تساعد الجهات على الوصول للوضوح، واتخاذ قرارات أذكى، وتحسين أداء التسويق عبر تحليل أعمال وتسويق دقيق.",
+
+        brand_tag: "وضوح أفضل. نتائج أقوى.",
+
+        nav_about: "من نحن",
+        nav_focus: "تركيزنا",
+        nav_how: "كيف نعمل",
+        nav_contact: "تواصل",
+
+        hero_title: `النمو لا يجب أن <span class="grad">يكون فوضويًا.</span>`,
+        hero_sub: "Purple Ocean تساعد الجهات على الوصول للوضوح، واتخاذ قرارات أذكى، وتحسين أداء التسويق عبر تحليل أعمال وتسويق دقيق.",
+
+        chip_clarity: `<i aria-hidden="true"></i> وضوح`,
+        chip_direction: `<i aria-hidden="true"></i> اتجاه`,
+        chip_execution: `<i aria-hidden="true"></i> تنفيذ`,
+
+        b1: "رسالة واضحة وتموضع يفهمه الناس بسرعة",
+        b2: "اتجاه تسويقي مبني على البيانات وما تعكسه فعليًا",
+        b3: "ضوضاء أقل وتنفيذ أنظف",
+
+        btn_contact: "تواصل معنا",
+        btn_copy: "نسخ البريد",
+
+        m1t: "وضوح في الأولويات",
+        m1s: "ما الذي نركز عليه، وما الذي نختبره بعدها.",
+        m2t: "اتجاه مبني على الأدلة",
+        m2s: "قرارات مبنية على مؤشرات الأداء وسلوك العملاء.",
+        m3t: "تنفيذ أنظف",
+        m3s: "هيكل بسيط يحافظ على اتساق الفريق عبر القنوات.",
+
+        about_title: "من نحن",
+        about_sub: "دعم احترافي قائم على فهم الأعمال — بدون مبالغة.",
+
+        a_label1: "اتجاه",
+        a_h1: "قرارات أوضح",
+        a_p1: "نساعد فرق القيادة على تقليل التعقيد واختيار مسار مركّز.",
+        a_label2: "معايير",
+        a_h2: "تنفيذ أقوى",
+        a_p2: "نساعد على تنفيذ تسويقي متسق بمظهر ممتاز ونتائج أفضل.",
+        a_label3: "تبسيط",
+        a_h3: "تشغيل أسلس",
+        a_p3: "نبسّط سير العمل وتدفّق القرار لتتحرك الفرق أسرع وباحتكاك أقل.",
+
+        focus_title: "تركيزنا",
+        focus_sub: "عام بشكل مقصود — لكنه مركز على نتائج تتراكم.",
+
+        f_label1: "وضوح",
+        f_h1: "خل الرسالة واضحة",
+        f_p1: "نبسّط ما تقدم، ولمن، ولماذا يهم — ليتم فهمك بسرعة.",
+        f_label2: "تحليل",
+        f_h2: "اعرف التالي للتحسين",
+        f_p2: "نراجع الأداء ورحلة العميل وإشارات السوق لتحديد ما يجب تغييره.",
+        f_label3: "اتجاه تسويقي",
+        f_h3: "حركات أقل… أقوى",
+        f_p3: "نحوّل الرؤى إلى أولويات: ماذا نركز عليه، ماذا نوقف، وماذا نختبر.",
+
+        how_title: "كيف نعمل",
+        how_sub: "ببساطة. بنظام. وبقياس.",
+
+        s1t: "نفهم الواقع",
+        s1s: "نبدأ من واقع العمل: الأهداف، مؤشرات الأداء، وكيف يبدو النجاح فعليًا.",
+        s2t: "نحوّل التعقيد إلى أولويات",
+        s2s: "نختصر كل شيء إلى خطوات عالية الأثر: اتجاه واضح وقياس واضح.",
+        s3t: "تنفيذ متسق",
+        s3s: "تنفيذ أنظف عبر القنوات، تشتيت أقل، وتحسينات مستمرة.",
+
+        cta_title: "تبغى وضوح في الخطوة الجاية؟",
+        cta_sub: "أرسل نبذة قصيرة — ونرد عليك بخطوات واضحة للتحرك.",
+
+        footer_line: "مقرنا في المملكة العربية السعودية.",
+        toast_copied: "تم النسخ."
+      }
+    };
+
+    const MAIL = {
+      en: {
+        subject: "Inquiry (Purple Ocean)",
+        body: "Hi Purple Ocean,\n\nOrganization: \nWebsite/IG: \nWhat you want to improve: \n\nThanks,"
+      },
+      ar: {
+        subject: "استفسار (Purple Ocean)",
+        body: "مرحباً Purple Ocean،\n\nالجهة/الشركة: \nالموقع/الانستقرام: \nما الذي تريد تحسينه: \n\nشكراً,"
+      }
+    };
+
+    function buildMailto(lang){
+      const s = encodeURIComponent(MAIL[lang].subject);
+      const b = encodeURIComponent(MAIL[lang].body);
+      return `mailto:${email}?subject=${s}&body=${b}`;
+    }
+
+    let currentLang = "en";
+
+    function setLang(lang){
+      currentLang = lang;
+      const isAR = lang === "ar";
+
+      document.documentElement.lang = isAR ? "ar" : "en";
+      document.documentElement.dir  = isAR ? "rtl" : "ltr";
+
+      // Update text
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const val = I18N[lang][key];
+        if (val == null) return;
+        el.innerHTML = val;
+      });
+
+      // Title + meta description
+      document.title = I18N[lang].title;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", I18N[lang].meta_desc);
+
+      // Mailto links
+      const href = buildMailto(lang);
+      document.querySelectorAll('[data-mailto="inquiry"]').forEach(a => a.setAttribute("href", href));
+
+      // Button label
+      const btn = document.getElementById("langBtn");
+      if (btn) btn.textContent = isAR ? "EN" : "عربي";
+
+      localStorage.setItem("po_lang", lang);
+    }
+
+    // Init
+    const saved = localStorage.getItem("po_lang");
+    const browserAR = (navigator.language || "").toLowerCase().startsWith("ar");
+    setLang(saved || (browserAR ? "ar" : "en"));
+
+    // Switch event
+    document.getElementById("langBtn")?.addEventListener("click", () => {
+      setLang(currentLang === "en" ? "ar" : "en");
+    });
   </script>
 </body>
 </html>
