@@ -4,495 +4,672 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Purple Ocean</title>
+  <meta name="description" content="Purple Ocean — Better clarity. Better outcomes." />
+  <meta name="theme-color" content="#070815" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #050816;
-      --bg-soft: #0e1024;
-      --card-bg: #111328;
-      --card-soft: #191b34;
-      --accent: #7a3cff;
-      --accent-alt: #b178ff;
-      --accent-soft: rgba(122, 60, 255, 0.12);
-      --text-main: #f9f9ff;
-      --text-muted: #a4a7c4;
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --chip-bg: rgba(255, 255, 255, 0.04);
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
-      --radius-card: 20px;
+    :root{
+      --bg:#070815;
+      --bg2:#0b0c22;
+
+      --text:#f7f7ff;
+      --muted:#a7aac7;
+
+      --panel: rgba(255,255,255,0.045);
+      --panel2: rgba(255,255,255,0.03);
+
+      --border: rgba(255,255,255,0.10);
+      --border2: rgba(255,255,255,0.06);
+
+      --accent:#8b5cf6;
+      --accent2:#22d3ee;
+
+      --shadow: 0 26px 70px rgba(0,0,0,0.65);
+      --shadow2: 0 14px 30px rgba(0,0,0,0.42);
+
+      --r: 22px;
+      --r2: 16px;
+
+      --max: 1080px;
+      --pad: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(122, 60, 255, 0.28), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(9, 161, 255, 0.18), transparent 55%),
-        var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+        radial-gradient(900px 560px at 12% 8%, rgba(139,92,246,0.22), transparent 60%),
+        radial-gradient(760px 520px at 92% 12%, rgba(34,211,238,0.14), transparent 55%),
+        radial-gradient(820px 520px at 90% 92%, rgba(139,92,246,0.10), transparent 58%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    .page {
-      max-width: 1040px;
+    /* Subtle grain for premium feel (lightweight) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+
+    .wrap{
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 18px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      position: relative;
+      padding: 28px var(--pad) 72px;
     }
 
-    /* HEADER */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      position: relative;
-      z-index: 2;
+    /* Sticky minimal header */
+    .top{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,8,21,0.78), rgba(7,8,21,0.40));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .topInner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px var(--pad);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
     }
-
-    .brand-mark {
-      width: 92px;
-      height: 92px;
-      border-radius: 20px;
-      padding: 0px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at 20% 0%, #7a3cff, #2a155f);
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 240px;
     }
-
-    .brand-mark img.brand-logo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 16px;
-      background: #111328;
+    .mark{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: radial-gradient(circle at 20% 15%, var(--accent), #2b1d5c);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.55);
+      overflow:hidden;
+      display:grid;
+      place-items:center;
     }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .mark img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background: rgba(10,12,30,0.55);
     }
-
-    .brand-name {
+    .brandName{
       font-weight: 600;
-      letter-spacing: 0.18em;
-      font-size: 0.92rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #f5f3ff;
+      font-size: 0.92rem;
+      line-height: 1.05;
+    }
+    .brandTag{
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
-    .brand-tagline {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-size: 0.92rem;
+      color: var(--muted);
     }
-
-    nav {
-      font-size: 0.85rem;
-      display: flex;
-      gap: 18px;
-      color: var(--text-muted);
+    .nav a{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, color .12s ease;
+      outline: none;
     }
-
-    nav span {
-      opacity: 0.9;
+    .nav a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.10);
+      color: var(--text);
     }
-
-    @media (max-width: 720px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .nav a:focus-visible{
+      border-color: rgba(34,211,238,0.50);
+      box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
+      color: var(--text);
     }
+    .nav .cta{
+      background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(34,211,238,0.75));
+      color: #fff;
+      border: 0;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+    }
+    .nav .cta:hover{ opacity: 0.97; transform: translateY(-1px); }
 
     /* HERO */
-    .hero-shell {
-      position: relative;
-      z-index: 1;
+    .hero{
+      margin-top: 14px;
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(620px 380px at 14% 18%, rgba(139,92,246,0.16), transparent 70%),
+        radial-gradient(620px 380px at 86% 20%, rgba(34,211,238,0.12), transparent 70%),
+        radial-gradient(700px 420px at 80% 90%, rgba(139,92,246,0.09), transparent 68%);
+      pointer-events:none;
+      opacity: 0.95;
+    }
+    .heroInner{
+      position:relative;
+      z-index:1;
+      padding: 26px 24px;
+      max-width: 760px;   /* makes the hero feel premium/minimal */
     }
 
-    .hero {
-      background: linear-gradient(145deg, rgba(17, 19, 40, 0.96), rgba(17, 19, 40, 0.98));
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 26px 24px 26px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(122, 60, 255, 0.22), transparent 70%);
-      right: -80px;
-      top: -80px;
-      opacity: 0.7;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-      gap: 26px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 880px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background-color: var(--accent-soft);
-      color: #e2d6ff;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      color: #e9e7ff;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 12px;
-      border: 1px solid rgba(188, 166, 255, 0.25);
-      backdrop-filter: blur(10px);
+      width: fit-content;
+    }
+    .pill .dot{
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(34,211,238,0.10);
     }
 
-    .hero-title {
-      font-size: 2rem;
-      margin: 0 0 12px;
-      line-height: 1.25;
-      letter-spacing: -0.03em;
+    h1{
+      margin: 14px 0 10px;
+      font-size: 2.35rem;
+      line-height: 1.10;
+      letter-spacing: -0.035em;
+    }
+    @media (max-width: 520px){
+      .heroInner{ padding: 22px 18px; }
+      h1{ font-size: 1.95rem; }
     }
 
-    @media (max-width: 480px) {
-      .hero-title {
-        font-size: 1.7rem;
-      }
-    }
-
-    .hero-title span.highlight {
-      background: linear-gradient(135deg, #e0dcff, #f4f0ff);
-      -webkit-background-clip: text;
+    .grad{
+      background: linear-gradient(135deg, #ffffff, #d8d2ff 55%, #eaffff);
+      -webkit-background-clip:text;
+      background-clip:text;
       color: transparent;
     }
 
-    .hero-sub {
-      font-size: 0.98rem;
-      color: var(--text-muted);
+    .sub{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.7;
+      max-width: 70ch;
+    }
+
+    .bullets{
       margin: 0 0 18px;
-      max-width: 460px;
-    }
-
-    .hero-list {
-      list-style: none;
       padding: 0;
-      margin: 0 0 20px;
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .hero-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .hero-list span.bullet {
-      font-size: 1rem;
-      margin-top: 1px;
-      color: var(--accent);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 20px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(130deg, var(--accent), var(--accent-alt));
-      color: #fff;
-      font-weight: 500;
-      font-size: 0.9rem;
-      text-decoration: none;
-      cursor: pointer;
-      box-shadow: 0 16px 32px rgba(15, 0, 60, 0.55);
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, opacity 0.1s ease-out;
-      letter-spacing: 0.02em;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 36px rgba(15, 0, 60, 0.7);
-      opacity: 0.96;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(188, 188, 255, 0.25);
-      background-color: rgba(255, 255, 255, 0.02);
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      text-decoration: none;
-      cursor: pointer;
-      gap: 6px;
-    }
-
-    .btn-secondary span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #3cdfff;
-    }
-
-    /* HERO SIDE CARD */
-    .hero-card {
-      background: radial-gradient(circle at top left, rgba(164, 130, 255, 0.28), transparent 60%), var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      padding: 16px 16px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at bottom right, rgba(60, 223, 255, 0.12), transparent 55%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #dcd8ff;
-      margin-bottom: 4px;
-    }
-
-    .hero-card-title {
-      font-size: 0.98rem;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      list-style: none;
+      display:flex;
+      flex-direction:column;
       gap: 10px;
-      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
     }
-
-    .metric {
-      padding: 9px 10px;
-      border-radius: 12px;
-      background-color: rgba(9, 10, 28, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .bullets li{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
     }
-
-    .metric-label {
-      color: var(--text-muted);
+    .tick{
+      width: 22px;
+      height: 22px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(34,211,238,0.10);
+      border: 1px solid rgba(34,211,238,0.18);
+      color:#dffcff;
+      flex: 0 0 auto;
+      margin-top: 1px;
     }
+    .tick svg{ width: 14px; height: 14px; }
 
-    .metric-value {
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 6px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
       font-weight: 600;
       font-size: 0.95rem;
-      color: #f4f3ff;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, opacity .12s ease;
+      outline:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn:focus-visible{
+      border-color: rgba(34,211,238,0.50);
+      box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
+    }
+    .btnPrimary{
+      border: 0;
+      background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(34,211,238,0.75));
+      box-shadow: 0 16px 36px rgba(0,0,0,0.48);
+    }
+    .btnPrimary:hover{ opacity: 0.97; }
+    .btnGhost{
+      color: var(--muted);
+    }
+    .btnGhost:hover{ color: var(--text); }
+
+    /* Sections */
+    .section{ margin-top: 22px; }
+
+    .head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+    .head h2{
+      margin:0;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    .head p{
+      margin:0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height:1.55;
+      max-width: 62ch;
     }
 
-    .hero-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
     }
 
-    .chip {
-      font-size: 0.75rem;
-      padding: 5px 9px;
+    .card{
+      border-radius: var(--r2);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow2);
+      padding: 16px 16px;
+      position:relative;
+      overflow:hidden;
+      min-height: 132px;
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.055);
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.14), transparent 70%);
+      right: -120px; top: -120px;
+      pointer-events:none;
+      opacity:0.9;
+    }
+
+    .label{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background-color: var(--chip-bg);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: #d3d4ef;
-      white-space: nowrap;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: auto;
-      padding: 16px 18px 24px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
       font-size: 0.78rem;
-      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e8e7ff;
+    }
+    .label i{
+      width: 7px; height: 7px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(139,92,246,0.10);
     }
 
-    footer .footer-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 12px;
+    .card h3{
+      margin: 10px 0 6px;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height:1.65;
+      max-width: 62ch;
     }
 
-    footer span strong {
-      color: #e3e4ff;
-      font-weight: 500;
+    /* “How we work” single card - make it feel special */
+    .wideCard{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow2);
+      padding: 18px 18px;
+      position:relative;
+      overflow:hidden;
     }
+    .wideCard::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(520px 320px at 18% 40%, rgba(34,211,238,0.10), transparent 70%),
+        radial-gradient(520px 320px at 85% 20%, rgba(139,92,246,0.14), transparent 70%);
+      pointer-events:none;
+      opacity:0.9;
+    }
+    .wideCard > *{ position:relative; z-index:1; }
+
+    /* CTA block */
+    .ctaBlock{
+      margin-top: 20px;
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(135deg, rgba(139,92,246,0.16), rgba(34,211,238,0.08));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .ctaBlock::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(520px 320px at 18% 30%, rgba(139,92,246,0.20), transparent 70%),
+        radial-gradient(560px 340px at 85% 75%, rgba(34,211,238,0.12), transparent 70%);
+      pointer-events:none;
+      opacity: 0.95;
+    }
+    .ctaInner{
+      position:relative;
+      z-index:1;
+      padding: 18px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .ctaInner h3{
+      margin:0;
+      font-size: 1.18rem;
+      letter-spacing:-0.01em;
+    }
+    .ctaInner p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 72ch;
+    }
+
+    footer{
+      padding: 26px var(--pad) 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+    }
+    .foot{
+      max-width: var(--max);
+      margin:0 auto;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .foot a{ text-decoration:underline; color:#e9e7ff; }
+    .foot small{ display:block; margin-top:6px; }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <div class="brand-mark">
-          <img src="logo.png" alt="Purple Ocean logo" class="brand-logo-img">
+  <!-- HEADER -->
+  <div class="top">
+    <div class="topInner">
+      <a class="brand" href="#top" aria-label="Purple Ocean home">
+        <div class="mark" aria-hidden="true">
+          <!-- Replace logo.png with your logo -->
+          <img src="logo.png" alt="">
         </div>
-        <div class="brand-text">
-          <div class="brand-name">Purple Ocean</div>
-          <div class="brand-tagline">Smart solutions for smoother operations</div>
+        <div>
+          <div class="brandName">Purple Ocean</div>
+          <div class="brandTag">Better clarity. Better outcomes.</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a class="cta" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <!-- HERO (right panel removed) -->
+    <section class="hero" aria-label="Hero">
+      <div class="heroInner">
+        <div class="pill"><span class="dot" aria-hidden="true"></span> Consulting</div>
+
+        <h1>
+          Growth shouldn’t  <span class="grad"> feel chaotic.</span>
+        </h1>
+
+        <p class="sub">
+          Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.
+        </p>
+
+        <ul class="bullets">
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Clear positioning and messaging that people understand fast</span>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Insight-driven marketing direction based on what the data is actually saying</span>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Less noise, cleaner execution, and stronger consistency across channels</span>
+          </li>
+        </ul>
+
+        <div class="actions">
+          <a class="btn btnPrimary" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)&body=Hi%20Purple%20Ocean%2C%0A%0AOrganization%3A%20%0AWebsite%2FIG%3A%20%0AWhat%20you%20want%20to%20improve%3A%20%0A%0AThanks%2C">
+            Contact Us
+          </a>
+          <a class="btn btnGhost" href="mailto:info@purpleocean.sa?subject=Brief%20Intro%20(Purple%20Ocean)">
+            Send a brief intro
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" aria-label="About">
+      <div class="head">
+        <div>
+          <h2>About</h2>
+          <p>Professional, business-first support — without the fluff.</p>
         </div>
       </div>
 
-      <nav>
-        <span>Consulting • Marketing • Automation</span>
-      </nav>
-    </header>
-
-    <main class="hero-shell">
-      <section class="hero">
-        <div class="hero-grid">
-          <!-- LEFT: COPY -->
-          <div>
-            <div class="hero-pill">Consulting &amp; Solutions</div>
-
-            <h1 class="hero-title">
-              We <span class="highlight">streamline your operations</span> and support sustainable growth.
-            </h1>
-
-            <p class="hero-sub">
-              Purple Ocean works with organizations to simplify processes, shape their brand, strengthen their message, and create digital experiences that feel cohesive.
-            </p>
-
-            <ul class="hero-list">
-              <li><span class="bullet">•</span><span>Process review and improvement tailored to your reality.</span></li>
-              <li><span class="bullet">•</span><span>Brand strategy and positioning that defines who you are.</span></li>
-              <li><span class="bullet">•</span><span>Practical marketing support designed for real business goals.</span></li>
-            </ul>
-
-            <div class="hero-actions">
-              <a class="btn-primary" href="mailto:info@purpleocean.sa?subject=Inquiry%20from%20website">
-                Contact Us
-              </a>
-
-              <a class="btn-secondary" href="mailto:info@purpleocean.sa?subject=Brief%20introduction">
-                <span class="dot"></span>
-                Send a quick intro
-              </a>
-            </div>
-          </div>
-
-          <!-- RIGHT: SERVICE SNAPSHOT -->
-          <div class="hero-card">
-            <div class="hero-card-inner">
-              <div class="hero-card-label">What we typically help with</div>
-              <div class="hero-card-title">
-                Simple, effective support for teams who want less friction and clearer execution.
-              </div>
-
-              <div class="hero-metrics">
-                <div class="metric">
-                  <div class="metric-label">Focus areas</div>
-                  <div class="metric-value">Marketing, IT</div>
-                </div>
-                <div class="metric">
-                  <div class="metric-label">Typical engagement</div>
-                  <div class="metric-value">Advisory &amp; hands-on support</div>
-                </div>
-              </div>
-
-              <div class="hero-chips">
-                <div class="chip">Brand strategy & positioning</div>
-                <div class="chip">Visual identity basics</div>
-                <div class="chip">Automation opportunities</div>
-                <div class="chip">Social & content direction</div>
-              </div>
-            </div>
-          </div>
+      <div class="grid">
+        <div class="card">
+          <div class="label"><i></i> Direction</div>
+          <h3>Clearer decisions</h3>
+          <p>We help leadership teams reduce complexity and choose a focused path forward.</p>
         </div>
-      </section>
-    </main>
 
-  </div>
+        <div class="card">
+          <div class="label"><i></i> Standards</div>
+          <h3>Stronger execution</h3>
+          <p>We support consistent marketing execution that looks premium and performs.</p>
+        </div>
 
+        <div class="card">
+          <div class="label"><i></i> Simplicity</div>
+          <h3>Smoother operations</h3>
+          <p>We simplify workflows and decision flow so teams move faster with less friction.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS -->
+    <section id="focus" class="section" aria-label="Focus">
+      <div class="head">
+        <div>
+          <h2>What we focus on</h2>
+          <p>General on purpose — centered on outcomes that compound.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="label"><i></i> Clarity</div>
+          <h3>Make the message obvious</h3>
+          <p>We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p>
+        </div>
+
+        <div class="card">
+          <div class="label"><i></i> Analysis</div>
+          <h3>See what to improve next</h3>
+          <p>We review performance, customer journey, and market signals to identify what to change.</p>
+        </div>
+
+        <div class="card">
+          <div class="label"><i></i> Marketing direction</div>
+          <h3>Fewer, stronger moves</h3>
+          <p>We translate insights into priorities: what to focus on, what to stop, and what to test.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK -->
+    <section class="section" aria-label="How we work">
+      <div class="head">
+        <div>
+          <h2>How we work</h2>
+          <p>Simple, structured, measurable.</p>
+        </div>
+      </div>
+
+      <div class="wideCard">
+        <h3 style="margin:0 0 6px;">Business-first and outcome-driven</h3>
+        <p style="margin:0; max-width: 82ch;">
+          We start by understanding the business and the numbers, then we reduce complexity into a few high-impact moves.
+          Clear decisions, clean execution, measurable progress.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="ctaBlock" aria-label="Contact CTA">
+      <div class="ctaInner">
+        <div>
+          <h3>Want clarity on what to do next?</h3>
+          <p>Send a short intro — we’ll respond with next steps and a simple way to move forward.</p>
+        </div>
+        <div class="actions" style="margin:0;">
+          <a class="btn btnPrimary" href="mailto:info@purpleocean.sa?subject=Inquiry%20(Purple%20Ocean)&body=Hi%20Purple%20Ocean%2C%0A%0AOrganization%3A%20%0AWebsite%2FIG%3A%20%0AWhat%20you%20want%20to%20improve%3A%20%0A%0AThanks%2C">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <span>© <span id="year"></span> <strong>Purple Ocean</strong>. All rights reserved.</span>
-      <span>Based in Saudi Arabia.</span>
+    <div class="foot">
+      <div>
+        <div style="color:var(--text); font-weight:700;">
+          © <span id="year"></span> Purple Ocean
+        </div>
+        <small>Based in Saudi Arabia • <a href="mailto:info@purpleocean.sa">info@purpleocean.sa</a></small>
+      </div>
+      <div>
+        <small style="opacity:0.9;">Better clarity. Better outcomes.</small>
+      </div>
     </div>
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
