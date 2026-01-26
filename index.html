@@ -6,64 +6,89 @@
   <title>Purple Ocean — Better clarity. Better outcomes.</title>
   <meta name="description" content="Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis." />
   <meta name="theme-color" content="#060616" />
+  
+  <!-- SEO & Open Graph -->
+  <meta property="og:title" content="Purple Ocean — Better clarity. Better outcomes.">
+  <meta property="og:description" content="Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_SA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Purple Ocean">
+  <meta name="twitter:description" content="Better clarity. Better outcomes.">
+  <meta name="robots" content="index, follow">
 
+  <!-- Optimized Font Loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Inter + Arabic font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#060616;
       --bg2:#0a0b22;
-
       --text:#f6f7ff;
-      --muted:#a6a9c7;
-
+      --muted:#b8bbd4;
       --a:#8b5cf6;
       --b:#22d3ee;
       --c:#ff4fd8;
-
       --shadow: 0 28px 80px rgba(0,0,0,0.68);
       --shadow2: 0 14px 34px rgba(0,0,0,0.44);
-
       --r: 28px;
       --r2: 18px;
-
       --max: 1180px;
       --pad: clamp(16px, 3vw, 24px);
-
       --ease: cubic-bezier(.2,.85,.2,1);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
     html{ scroll-behavior:smooth; }
+    
     body{
-      margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
       background: radial-gradient(1200px 800px at 10% 8%, rgba(139,92,246,0.18), transparent 60%),
                   radial-gradient(900px 650px at 92% 14%, rgba(34,211,238,0.13), transparent 55%),
                   radial-gradient(900px 700px at 80% 92%, rgba(255,79,216,0.08), transparent 60%),
                   linear-gradient(180deg, var(--bg), var(--bg2));
+      background-attachment: fixed;
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Arabic typography */
     html[dir="rtl"] body{
       font-family: Tajawal, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
+    /* Skip Link for Accessibility */
+    .skip-link{
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: var(--a);
+      color: #fff;
+      border-radius: 0 0 12px 12px;
+      z-index: 999;
+      transition: top 0.3s var(--ease);
+      font-weight: 600;
+    }
+    .skip-link:focus{ top: 0; }
+
+    /* Background Effects - Optimized */
     .bgFX{
       position: fixed;
       inset: -20vh -20vw;
       pointer-events:none;
       z-index: -2;
       filter: blur(26px);
-      opacity: 0.85;
+      opacity: 0;
+      transition: opacity 0.6s var(--ease);
     }
+    .bgFX.loaded{ opacity: 0.85; }
+
     .blob{
       position:absolute;
       width: 52vw;
@@ -71,6 +96,8 @@
       border-radius: 999px;
       mix-blend-mode: screen;
       will-change: transform;
+      contain: layout style paint;
+      backface-visibility: hidden;
       opacity: 0.18;
       background: radial-gradient(circle at 30% 30%, var(--a), transparent 60%);
       animation: float1 14s var(--ease) infinite alternate;
@@ -113,15 +140,22 @@
       padding: 22px var(--pad) 90px;
     }
 
-    /* ===== Header ===== */
+    /* Header with entrance animation */
     .top{
       position: sticky;
       top: 0;
       z-index: 60;
       background: linear-gradient(180deg, rgba(6,6,22,0.78), rgba(6,6,22,0.40));
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      animation: slideDown 0.6s var(--ease) both;
     }
+    @keyframes slideDown{
+      from{ transform: translateY(-100%); opacity: 0; }
+      to{ transform: translateY(0); opacity: 1; }
+    }
+
     .topInner{
       max-width: var(--max);
       margin:0 auto;
@@ -201,7 +235,6 @@
       color: var(--text);
     }
 
-    /* Language button */
     .langBtn{
       padding: 8px 12px;
       border-radius: 999px;
@@ -209,6 +242,7 @@
       background: rgba(255,255,255,0.03);
       color: rgba(230,232,255,0.92);
       font-weight: 800;
+      font-size: 0.93rem;
       cursor:pointer;
       transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
       white-space: nowrap;
@@ -244,14 +278,13 @@
     }
     .nav .cta:hover::before{ transform: translateX(60%); }
 
-    /* Mobile header UX */
     @media (max-width: 680px){
       .brand{ min-width: 0; }
       .brandTag{ display:none; }
-      .nav a:not(.cta){ display:none; } /* keep langBtn + Contact */
+      .nav a:not(.cta){ display:none; }
     }
 
-    /* ===== Hero ===== */
+    /* Hero */
     .hero{
       margin-top: 16px;
       border-radius: calc(var(--r) + 8px);
@@ -414,8 +447,14 @@
     }
     .btnPrimary{
       border:0;
-      background: linear-gradient(135deg, rgba(139,92,246,0.98), rgba(34,211,238,0.82));
+      background: linear-gradient(135deg, rgba(139,92,246,1) 0%, rgba(99,102,241,0.9) 50%, rgba(34,211,238,0.85) 100%);
+      background-size: 200% 200%;
       box-shadow: 0 18px 46px rgba(0,0,0,0.50);
+      animation: gradientShift 3s ease infinite;
+    }
+    @keyframes gradientShift{
+      0%, 100%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
     }
     .btnPrimary::before{
       content:"";
@@ -434,7 +473,7 @@
       .btn{ width: 100%; }
     }
 
-    /* ===== Right panel ===== */
+    /* Right panel */
     .heroArt{
       border-radius: var(--r);
       border: 1px solid rgba(255,255,255,0.10);
@@ -462,8 +501,6 @@
       opacity:0.95;
     }
     .heroArt > *{ position:relative; z-index:1; }
-
-    /* Safety net */
     .heroArt svg{ width: 18px; height: 18px; display:block; }
 
     .orbWrap{ display:grid; place-items:center; padding: 10px 0 4px; }
@@ -519,6 +556,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(10,12,30,0.40);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 18px 40px rgba(0,0,0,0.45);
       overflow:hidden;
     }
@@ -560,7 +598,7 @@
     .miniItem b{ display:block; margin: 0 0 2px; letter-spacing: -0.01em; font-size: 0.98rem; }
     .miniItem span{ display:block; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
 
-    /* ===== Sections ===== */
+    /* Sections */
     .section{ margin-top: 28px; }
     .head{ display:flex; align-items:flex-end; justify-content:space-between; gap: 14px; margin: 18px 0 12px; }
     .head h2{ margin:0; font-size: 1.40rem; letter-spacing:-0.02em; }
@@ -580,7 +618,7 @@
       min-height: 140px;
       transform-style: preserve-3d;
       will-change: transform;
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease);
     }
     .card::before{
       content:"";
@@ -591,7 +629,11 @@
       transition: opacity .18s var(--ease);
       pointer-events:none;
     }
-    .card:hover{ border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.055); }
+    .card:hover{
+      border-color: rgba(139, 92, 246, 0.25);
+      background: rgba(255,255,255,0.055);
+      box-shadow: var(--shadow2), 0 0 30px rgba(139, 92, 246, 0.08), 0 0 60px rgba(34, 211, 238, 0.05);
+    }
     .card:hover::before{ opacity: 1; }
 
     .label{
@@ -709,6 +751,7 @@
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(10,12,30,0.72);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow2);
       padding: 10px 12px;
       color: rgba(230,232,255,0.92);
@@ -721,15 +764,24 @@
     .toast.on{ opacity:1; transform: translateX(-50%) translateY(0); }
     .toast svg{ width:16px; height:16px; color: var(--b); }
 
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior:auto; }
       .blob, .orb::after, .orb::before{ animation:none !important; }
       .reveal{ opacity:1; transform:none; transition:none; }
-      .btn, .nav a, .card, .miniItem, .langBtn{ transition:none; }
+      .btn, .nav a, .card, .miniItem, .langBtn, .btnPrimary{ transition:none; animation:none; }
       .spot{ display:none; }
+      .top{ animation:none; }
+      .bgFX{ opacity: 0.85; transition:none; }
     }
 
-    /* ===== RTL tweaks (Arabic) ===== */
+    /* Mobile performance optimization */
+    @media (max-width: 768px){
+      .blob{ animation-duration: 20s; }
+      .orb::after{ animation-duration: 15s; }
+    }
+
+    /* RTL tweaks (Arabic) */
     html[dir="rtl"] .topInner{ flex-direction: row-reverse; }
     html[dir="rtl"] .nav{ justify-content: flex-start; }
     html[dir="rtl"] .brand{ text-align:right; }
@@ -738,8 +790,8 @@
     html[dir="rtl"] .actions{ flex-direction: row-reverse; }
     html[dir="rtl"] .ctaInner{ flex-direction: row-reverse; }
     html[dir="rtl"] .foot{ flex-direction: row-reverse; }
+    html[dir="rtl"] .nav a::after{ transform-origin: right; }
 
-    /* Swap hero columns on wide screens for Arabic (right-to-left reading) */
     @media (min-width: 981px){
       html[dir="rtl"] .heroMain{ order: 2; }
       html[dir="rtl"] .heroArt{ order: 1; }
@@ -748,6 +800,9 @@
 </head>
 
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#hero" class="skip-link">Skip to main content</a>
+
   <div class="bgFX" aria-hidden="true">
     <div class="blob"></div>
     <div class="blob b2"></div>
@@ -757,7 +812,7 @@
   <header class="top" id="top">
     <div class="topInner">
       <a class="brand" href="#top" aria-label="Purple Ocean home">
-        <div class="mark" aria-hidden="true"><img src="logo.png" alt=""></div>
+        <div class="mark" aria-hidden="true"><img src="logo.png" alt="" loading="lazy"></div>
         <div>
           <div class="brandName">Purple Ocean</div>
           <div class="brandTag" data-i18n="brand_tag">Better clarity. Better outcomes.</div>
@@ -768,9 +823,7 @@
         <a href="#about" data-i18n="nav_about">About</a>
         <a href="#focus" data-i18n="nav_focus">Focus</a>
         <a href="#how" data-i18n="nav_how">How we work</a>
-
         <button class="langBtn" id="langBtn" type="button" aria-label="Switch language">عربي</button>
-
         <a class="cta" id="navContact" data-mailto="inquiry" href="#">
           <span data-i18n="nav_contact">Contact</span>
         </a>
@@ -784,7 +837,7 @@
 
       <div class="heroInner">
         <div class="heroMain">
-          <h1 data-i18n="hero_title">Growth shouldn’t <span class="grad">feel chaotic.</span></h1>
+          <h1 data-i18n="hero_title">Growth shouldn't <span class="grad">feel chaotic.</span></h1>
 
           <p class="sub" data-i18n="hero_sub">
             Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.
@@ -798,15 +851,15 @@
 
           <ul class="bullets">
             <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </span><span data-i18n="b1">Clear positioning and messaging that people understand fast</span></li>
 
             <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </span><span data-i18n="b2">Insight-driven direction based on what the data is actually saying</span></li>
 
             <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </span><span data-i18n="b3">Less noise, cleaner execution</span></li>
           </ul>
 
@@ -832,7 +885,7 @@
           <div class="orbWrap">
             <div class="orb" aria-hidden="true">
               <div class="orbLogo" aria-hidden="true">
-                <img src="po.svg" alt="">
+                <img src="po.svg" alt="" loading="lazy">
               </div>
             </div>
           </div>
@@ -841,7 +894,7 @@
             <div class="miniItem">
               <div class="miniIcon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 17l6-6 4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 17l6-6 4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   <path d="M20 7v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
@@ -853,7 +906,7 @@
                 <svg viewBox="0 0 24 24" fill="none">
                   <path d="M4 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                   <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
               <div><b data-i18n="m2t">Evidence-based direction</b><span data-i18n="m2s">Decisions grounded in performance signals and customer behavior.</span></div>
@@ -902,7 +955,7 @@
         <div class="card" data-tilt>
           <div class="label"><i></i> <span data-i18n="f_label1">Clarity</span></div>
           <h3 data-i18n="f_h1">Make the message obvious</h3>
-          <p data-i18n="f_p1">We simplify what you do, who it’s for, and why it matters — so people understand you fast.</p>
+          <p data-i18n="f_p1">We simplify what you do, who it's for, and why it matters — so people understand you fast.</p>
         </div>
 
         <div class="card" data-tilt>
@@ -942,7 +995,7 @@
       <div class="ctaInner">
         <div>
           <h3 data-i18n="cta_title">Want clarity on what to do next?</h3>
-          <p data-i18n="cta_sub">Send a short intro — we’ll respond with next steps and a simple way to move forward.</p>
+          <p data-i18n="cta_sub">Send a short intro — we'll respond with next steps and a simple way to move forward.</p>
         </div>
         <div class="actions" style="margin:0;">
           <a class="btn btnPrimary" id="ctaContact" data-mailto="inquiry" href="#">
@@ -966,16 +1019,22 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <span id="toastText" data-i18n="toast_copied">Copied.</span>
   </div>
 
   <script>
+    // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Lazy load background effects
+    window.addEventListener('load', () => {
+      document.querySelector('.bgFX')?.classList.add('loaded');
+    });
+
     // Reveal
-    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     const reveals = document.querySelectorAll(".reveal");
     if (!prefersReduced && "IntersectionObserver" in window) {
       const io = new IntersectionObserver((entries) => {
@@ -989,7 +1048,7 @@
     // Hero spotlight (desktop only)
     const hero = document.getElementById("hero");
     const spot = document.getElementById("spot");
-    const canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+    const canHover = window.matchMedia?.("(hover: hover)").matches;
     if (!prefersReduced && hero && spot && canHover) {
       hero.addEventListener("pointermove", (e) => {
         const r = hero.getBoundingClientRect();
@@ -1002,8 +1061,7 @@
 
     // Tilt (desktop only)
     function attachTilt(el, max=8){
-      if (!el || prefersReduced) return;
-      if (!canHover) return;
+      if (!el || prefersReduced || !canHover) return;
       el.addEventListener("pointermove", (e) => {
         const r = el.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width;
@@ -1048,43 +1106,34 @@
       }
     });
 
-    // ===== i18n =====
+    // i18n
     const I18N = {
       en: {
         title: "Purple Ocean — Better clarity. Better outcomes.",
         meta_desc: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
-
         brand_tag: "Better clarity. Better outcomes.",
-
         nav_about: "About",
         nav_focus: "Focus",
         nav_how: "How we work",
         nav_contact: "Contact",
-
-        hero_title: `Growth shouldn’t <span class="grad">feel chaotic.</span>`,
+        hero_title: `Growth shouldn't <span class="grad">feel chaotic.</span>`,
         hero_sub: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
-
         chip_clarity: `<i aria-hidden="true"></i> Clarity`,
         chip_direction: `<i aria-hidden="true"></i> Direction`,
         chip_execution: `<i aria-hidden="true"></i> Execution`,
-
         b1: "Clear positioning and messaging that people understand fast",
         b2: "Insight-driven marketing direction based on what the data is actually saying",
         b3: "Less noise, cleaner execution",
-
         btn_contact: "Contact Us",
         btn_copy: "Copy email",
-
         m1t: "Clarity on priorities",
         m1s: "What to focus on, and what to test next.",
         m2t: "Evidence-based direction",
         m2s: "Decisions grounded in performance signals and customer behavior.",
         m3t: "Cleaner execution",
         m3s: "Simple structure that keeps teams aligned across channels.",
-
         about_title: "About",
         about_sub: "Professional, business-first support — without the fluff.",
-
         a_label1: "Direction",
         a_h1: "Clearer decisions",
         a_p1: "We help leadership teams reduce complexity and choose a focused path forward.",
@@ -1094,72 +1143,56 @@
         a_label3: "Simplicity",
         a_h3: "Smoother operations",
         a_p3: "We simplify workflows and decision flow so teams move faster with less friction.",
-
         focus_title: "What we focus on",
         focus_sub: "General on purpose — centered on outcomes that compound.",
-
         f_label1: "Clarity",
         f_h1: "Make the message obvious",
-        f_p1: "We simplify what you do, who it’s for, and why it matters — so people understand you fast.",
+        f_p1: "We simplify what you do, who it's for, and why it matters — so people understand you fast.",
         f_label2: "Analysis",
         f_h2: "See what to improve next",
         f_p2: "We review performance, customer journey, and market signals to identify what to change.",
         f_label3: "Marketing direction",
         f_h3: "Fewer, stronger moves",
         f_p3: "We translate insights into priorities: what to focus on, what to stop, and what to test.",
-
         how_title: "How we work",
         how_sub: "Simple, structured, measurable.",
-
         s1t: "Understand the business",
         s1s: "We start with the business reality: goals, performance signals, and what success must look like.",
         s2t: "Reduce complexity to priorities",
         s2s: "We compress everything into a few high-impact moves — clear direction, and clear measurement.",
         s3t: "Execute with consistency",
         s3s: "Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.",
-
         cta_title: "Want clarity on what to do next?",
-        cta_sub: "Send a short intro — we’ll respond with next steps and a simple way to move forward.",
-
+        cta_sub: "Send a short intro — we'll respond with next steps and a simple way to move forward.",
         footer_line: "Based in Saudi Arabia.",
         toast_copied: "Copied."
       },
-
       ar: {
         title: "Purple Ocean — وضوح أفضل. نتائج أقوى.",
         meta_desc: "Purple Ocean تساعد الجهات على الوصول للوضوح، واتخاذ قرارات أذكى، وتحسين أداء التسويق عبر تحليل أعمال وتسويق دقيق.",
-
         brand_tag: "وضوح أفضل. نتائج أقوى.",
-
         nav_about: "من نحن",
         nav_focus: "تركيزنا",
         nav_how: "كيف نعمل",
         nav_contact: "تواصل",
-
-        hero_title: `<span class="grad">الوضوح أَساسُ النُّموِّ.</span>`,
+        hero_title: `<span class="grad">الوضوح أَساسُ النُّموِّ.</span>`,
         hero_sub: "برپل أوشن شريك استراتيجي يساعد الجهات على تحقيق وضوح أفضل، واتخاذ قرارات مدروسة، وتحسين أداء التسويق من خلال تحليل الأعمال والرؤى المبنية على البيانات.",
-
         chip_clarity: `<i aria-hidden="true"></i> وضوح`,
         chip_direction: `<i aria-hidden="true"></i> توجية`,
         chip_execution: `<i aria-hidden="true"></i> تنفيذ`,
-
         b1: "رسالة واضحة وتموضع يفهمه الناس بسرعة",
         b2: "توجية مبني على البيانات وما تعكسه فعليًا",
         b3: "ضوضاء أقل وتنفيذ مرن",
-
         btn_contact: "تواصل معنا",
         btn_copy: "نسخ البريد",
-
         m1t: "وضوح في الأولويات",
         m1s: "ما الذي نركز عليه، وما الذي نختبره بعدها.",
         m2t: "توجية مبني على الأدلة",
         m2s: "قرارات مبنية على مؤشرات الأداء وسلوك العملاء.",
         m3t: "تنفيذ مرن",
         m3s: "هيكل بسيط يحافظ على اتساق الفريق.",
-
         about_title: "من نحن",
         about_sub: "دعم احترافي قائم على فهم الأعمال — بدون مبالغة.",
-
         a_label1: "توجية",
         a_h1: "قرارات أوضح",
         a_p1: "نساعد فرق القيادة على تقليل التعقيد واختيار مسار واضح.",
@@ -1169,10 +1202,8 @@
         a_label3: "تبسيط",
         a_h3: "تشغيل أسلس",
         a_p3: "نبسّط سير العمل وتدفّق القرار لتتحرك الفرق أسرع وباحتكاك أقل.",
-
         focus_title: "تركيزنا",
         focus_sub: "مركز على نتائج تتراكم.",
-
         f_label1: "وضوح",
         f_h1: "خل الرسالة واضحة",
         f_p1: "نبسّط ما تقدم، ولمن، ولماذا — ليتم فهمك بسرعة.",
@@ -1182,21 +1213,17 @@
         f_label3: "توجية تسويقي",
         f_h3: "خطوات اقل أثر اكبر",
         f_p3: "نحوّل الرؤى إلى أولويات: ماذا نركز عليه، وماذا نختبر.",
-
         how_title: "كيف نعمل",
         how_sub: "ببساطة. بنظام. وبقياس.",
-
         s1t: "نفهم الواقع",
         s1s: "نبدأ من واقع العمل: الأهداف، مؤشرات الأداء، وكيف يبدو النجاح فعليًا.",
         s2t: "نحوّل التعقيد إلى أولويات",
         s2s: "نختصر كل شيء إلى خطوات عالية الأثر: توجية واضح وقياس واضح.",
         s3t: "تنفيذ متسق",
         s3s: "تنفيذ مرن، تشتيت أقل، وتحسينات مستمرة.",
-
         cta_title: "تبغى وضوح في الخطوة الجاية؟",
         cta_sub: "أرسل نبذة قصيرة — ونرد عليك بخطوات واضحة للتحرك.",
-
-        footer_line: " المملكة العربية السعودية.",
+        footer_line: "المملكة العربية السعودية.",
         toast_copied: "تم النسخ."
       }
     };
@@ -1227,7 +1254,6 @@
       document.documentElement.lang = isAR ? "ar" : "en";
       document.documentElement.dir  = isAR ? "rtl" : "ltr";
 
-      // Update text
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         const val = I18N[lang][key];
@@ -1235,28 +1261,23 @@
         el.innerHTML = val;
       });
 
-      // Title + meta description
       document.title = I18N[lang].title;
       const meta = document.querySelector('meta[name="description"]');
       if (meta) meta.setAttribute("content", I18N[lang].meta_desc);
 
-      // Mailto links
       const href = buildMailto(lang);
       document.querySelectorAll('[data-mailto="inquiry"]').forEach(a => a.setAttribute("href", href));
 
-      // Button label
       const btn = document.getElementById("langBtn");
       if (btn) btn.textContent = isAR ? "EN" : "عربي";
 
       localStorage.setItem("po_lang", lang);
     }
 
-    // Init
     const saved = localStorage.getItem("po_lang");
     const browserAR = (navigator.language || "").toLowerCase().startsWith("ar");
     setLang(saved || (browserAR ? "ar" : "en"));
 
-    // Switch event
     document.getElementById("langBtn")?.addEventListener("click", () => {
       setLang(currentLang === "en" ? "ar" : "en");
     });
