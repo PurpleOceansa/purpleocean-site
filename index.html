@@ -1,1286 +1,664 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Purple Ocean — Better clarity. Better outcomes.</title>
-  <meta name="description" content="Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis." />
-  <meta name="theme-color" content="#060616" />
-  
-  <!-- SEO & Open Graph -->
-  <meta property="og:title" content="Purple Ocean — Better clarity. Better outcomes.">
-  <meta property="og:description" content="Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="ar_SA">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Purple Ocean">
-  <meta name="twitter:description" content="Better clarity. Better outcomes.">
-  <meta name="robots" content="index, follow">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Purple Ocean — Better clarity. Better outcomes.</title>
+<meta name="description" content="Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis."/>
+<meta name="theme-color" content="#060616"/>
+<link rel="icon" type="image/svg+xml" href="po.svg"/>
+<link rel="preload" as="image" href="logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Optimized Font Loading -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+<meta property="og:title" content="Purple Ocean — Better clarity. Better outcomes.">
+<meta property="og:description" content="Clarity, smarter decisions, and stronger marketing performance.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="po.svg">
+<meta name="twitter:card" content="summary_large_image">
 
-  <style>
-    :root{
-      --bg:#060616;
-      --bg2:#0a0b22;
-      --text:#f6f7ff;
-      --muted:#b8bbd4;
-      --a:#8b5cf6;
-      --b:#22d3ee;
-      --c:#ff4fd8;
-      --shadow: 0 28px 80px rgba(0,0,0,0.68);
-      --shadow2: 0 14px 34px rgba(0,0,0,0.44);
-      --r: 28px;
-      --r2: 18px;
-      --max: 1180px;
-      --pad: clamp(16px, 3vw, 24px);
-      --ease: cubic-bezier(.2,.85,.2,1);
-    }
+<style>
+:root{
+  --bg:#05061A; --bg2:#0A0B26; --panel:rgba(255,255,255,.04); --panel2:rgba(255,255,255,.06);
+  --text:#F6F7FF; --muted:#A8ACC9; --dim:#7A7E9E;
+  --a:#8B5CF6; --b:#22D3EE; --c:#FF4FD8; --d:#F59E0B;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --shadow:0 30px 90px rgba(0,0,0,.55); --shadow2:0 14px 40px rgba(0,0,0,.40);
+  --r:24px; --r2:16px; --r3:12px;
+  --max:1220px; --pad:clamp(16px,3vw,28px);
+  --ease:cubic-bezier(.22,.8,.22,1);
+  --grad:linear-gradient(135deg,#8B5CF6 0%,#6366F1 40%,#22D3EE 80%);
+  --gradSoft:linear-gradient(135deg,rgba(139,92,246,.18),rgba(34,211,238,.10));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+*:focus-visible{outline:2px solid var(--b);outline-offset:3px;border-radius:6px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text);background:var(--bg);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  line-height:1.6;font-weight:400;
+}
+html[dir="rtl"] body{font-family:Tajawal,Inter,sans-serif}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
-    
-    body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: radial-gradient(1200px 800px at 10% 8%, rgba(139,92,246,0.18), transparent 60%),
-                  radial-gradient(900px 650px at 92% 14%, rgba(34,211,238,0.13), transparent 55%),
-                  radial-gradient(900px 700px at 80% 92%, rgba(255,79,216,0.08), transparent 60%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
-      background-attachment: fixed;
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+/* ===== Aurora background ===== */
+.aurora{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
+  radial-gradient(1400px 900px at 12% 6%,rgba(139,92,246,.22),transparent 60%),
+  radial-gradient(1100px 800px at 90% 10%,rgba(34,211,238,.16),transparent 58%),
+  radial-gradient(1100px 800px at 80% 95%,rgba(255,79,216,.10),transparent 60%),
+  linear-gradient(180deg,var(--bg),var(--bg2))}
+.aurora::before,.aurora::after{content:"";position:absolute;width:60vw;height:60vw;border-radius:50%;
+  filter:blur(70px);opacity:.55;mix-blend-mode:screen;will-change:transform}
+.aurora::before{top:-10%;left:-10%;background:radial-gradient(circle,var(--a),transparent 60%);animation:drift1 22s var(--ease) infinite alternate}
+.aurora::after{bottom:-20%;right:-10%;background:radial-gradient(circle,var(--b),transparent 60%);animation:drift2 28s var(--ease) infinite alternate}
+@keyframes drift1{to{transform:translate(20vw,15vh) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-15vw,-10vh) scale(1.1)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.7'/></svg>")}
 
-    html[dir="rtl"] body{
-      font-family: Tajawal, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+/* ===== Cursor glow (desktop only) ===== */
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle,rgba(139,92,246,.15),transparent 60%);
+  transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;will-change:transform,left,top}
+@media(hover:none){.cursor-glow{display:none}}
 
-    /* Skip Link for Accessibility */
-    .skip-link{
-      position: absolute;
-      top: -100%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 24px;
-      background: var(--a);
-      color: #fff;
-      border-radius: 0 0 12px 12px;
-      z-index: 999;
-      transition: top 0.3s var(--ease);
-      font-weight: 600;
-    }
-    .skip-link:focus{ top: 0; }
+/* ===== Layout ===== */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.section{padding:clamp(60px,8vw,100px) 0;content-visibility:auto;contain-intrinsic-size:800px}
 
-    /* Background Effects - Optimized */
-    .bgFX{
-      position: fixed;
-      inset: -20vh -20vw;
-      pointer-events:none;
-      z-index: -2;
-      filter: blur(26px);
-      opacity: 0;
-      transition: opacity 0.6s var(--ease);
-    }
-    .bgFX.loaded{ opacity: 0.85; }
+/* ===== Skip link ===== */
+.skip{position:fixed;top:-100px;left:50%;transform:translateX(-50%);padding:12px 20px;background:var(--a);color:#fff;border-radius:0 0 12px 12px;z-index:999;font-weight:700;transition:top .3s}
+.skip:focus{top:0}
 
-    .blob{
-      position:absolute;
-      width: 52vw;
-      height: 52vw;
-      border-radius: 999px;
-      mix-blend-mode: screen;
-      will-change: transform;
-      contain: layout style paint;
-      backface-visibility: hidden;
-      opacity: 0.18;
-      background: radial-gradient(circle at 30% 30%, var(--a), transparent 60%);
-      animation: float1 14s var(--ease) infinite alternate;
-    }
-    .blob.b2{
-      width: 46vw;
-      height: 46vw;
-      opacity: 0.16;
-      background: radial-gradient(circle at 40% 40%, var(--b), transparent 58%);
-      animation: float2 16s var(--ease) infinite alternate;
-    }
-    .blob.b3{
-      width: 44vw;
-      height: 44vw;
-      opacity: 0.13;
-      background: radial-gradient(circle at 35% 35%, var(--c), transparent 60%);
-      animation: float3 18s var(--ease) infinite alternate;
-    }
-    @keyframes float1{ from{ transform: translate(6vw, 4vh) scale(1);} to{ transform: translate(22vw, 18vh) scale(1.08);} }
-    @keyframes float2{ from{ transform: translate(56vw, 10vh) scale(1);} to{ transform: translate(36vw, 26vh) scale(1.12);} }
-    @keyframes float3{ from{ transform: translate(40vw, 58vh) scale(1);} to{ transform: translate(8vw, 44vh) scale(1.10);} }
+/* ===== Header ===== */
+.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(5,6,26,.65);border-bottom:1px solid var(--line);transition:background .3s}
+.top.scrolled{background:rgba(5,6,26,.85);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.topInner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:42px;height:42px;border-radius:12px;overflow:hidden;background:var(--grad);padding:2px;flex:0 0 auto;box-shadow:0 8px 24px rgba(139,92,246,.35)}
+.mark img{width:100%;height:100%;object-fit:contain;background:#0A0B26;border-radius:10px}
+.brandName{font-weight:900;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;line-height:1}
+.brandTag{margin-top:3px;font-size:.8rem;color:var(--muted);font-weight:500}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a.link{padding:9px 14px;border-radius:999px;color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s,background .2s}
+.nav a.link:hover{color:var(--text);background:var(--panel)}
+.langBtn{padding:9px 14px;border-radius:999px;border:1px solid var(--line2);font-weight:700;font-size:.85rem;color:var(--text);transition:background .2s,transform .15s}
+.langBtn:hover{background:var(--panel2);transform:translateY(-1px)}
+.cta{padding:10px 18px;border-radius:999px;color:#fff;font-weight:700;font-size:.9rem;background:var(--grad);background-size:200% 200%;
+  box-shadow:0 10px 30px rgba(139,92,246,.35);transition:transform .2s,box-shadow .2s,background-position .4s;position:relative;overflow:hidden}
+.cta:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(139,92,246,.5);background-position:100% 50%}
+.hamburger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line2);place-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text);position:relative;transition:.3s}
+.hamburger span::before,.hamburger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text);transition:.3s}
+.hamburger span::before{top:-6px}.hamburger span::after{top:6px}
+.hamburger.open span{background:transparent}
+.hamburger.open span::before{top:0;transform:rotate(45deg)}
+.hamburger.open span::after{top:0;transform:rotate(-45deg)}
+@media(max-width:900px){
+  .nav a.link{display:none}
+  .hamburger{display:grid}
+  .drawer.open{display:block}
+}
+.drawer{display:none;position:fixed;inset:64px 0 0 0;z-index:49;background:rgba(5,6,26,.96);backdrop-filter:blur(20px);padding:30px var(--pad);animation:fadeIn .3s}
+.drawer a{display:block;padding:18px 0;border-bottom:1px solid var(--line);font-size:1.2rem;font-weight:600}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:0.055;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      z-index:-1;
-    }
+/* ===== Hero ===== */
+.hero{position:relative;padding:clamp(40px,6vw,80px) 0 clamp(60px,8vw,100px)}
+.heroGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+@media(max-width:960px){.heroGrid{grid-template-columns:1fr;gap:50px}}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+  border:1px solid var(--line2);background:var(--panel);font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:24px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,.2);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.5}}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.04em;font-weight:900;margin-bottom:20px}
+.grad{background:linear-gradient(135deg,#fff 20%,#D8D2FF 55%,#A5F3FC 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.heroSub{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--muted);max-width:58ch;margin-bottom:32px;line-height:1.75}
+.heroBtns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:999px;
+  font-weight:700;font-size:.95rem;transition:transform .2s,background .2s,box-shadow .2s,border-color .2s;white-space:nowrap}
+.btnPrimary{background:var(--grad);background-size:200% 200%;color:#fff;box-shadow:0 14px 40px rgba(139,92,246,.4);position:relative;overflow:hidden}
+.btnPrimary:hover{transform:translateY(-2px);background-position:100% 50%;box-shadow:0 18px 50px rgba(139,92,246,.55)}
+.btnGhost{background:var(--panel);border:1px solid var(--line2);color:var(--text)}
+.btnGhost:hover{background:var(--panel2);transform:translateY(-2px)}
+.heroStats{display:flex;gap:32px;flex-wrap:wrap}
+.heroStats>div{display:flex;flex-direction:column}
+.heroStats b{font-size:1.7rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.heroStats span{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
 
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; }
+/* ===== Hero visual (orb) ===== */
+.heroArt{position:relative;aspect-ratio:1/1;max-width:520px;margin:0 auto;width:100%}
+.orb{position:absolute;inset:10%;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--a),var(--b),var(--c),var(--a));
+  filter:blur(40px);opacity:.7;animation:spin 20s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbInner{position:absolute;inset:22%;border-radius:50%;background:rgba(10,11,38,.8);backdrop-filter:blur(20px);
+  border:1px solid var(--line2);display:grid;place-items:center;box-shadow:var(--shadow),inset 0 0 60px rgba(139,92,246,.2)}
+.orbInner img{width:55%;height:55%;object-fit:contain}
+.floatCard{position:absolute;padding:12px 16px;border-radius:14px;background:rgba(10,11,38,.85);backdrop-filter:blur(16px);
+  border:1px solid var(--line2);box-shadow:var(--shadow2);display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;
+  animation:floatY 4s ease-in-out infinite}
+.floatCard.fc1{top:8%;left:-4%;animation-delay:0s}
+.floatCard.fc2{bottom:12%;right:-6%;animation-delay:-2s}
+.floatCard.fc3{top:50%;right:-10%;animation-delay:-1s}
+.floatCard .ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--gradSoft);border:1px solid var(--line2)}
+.floatCard .ico svg{width:16px;height:16px}
+@keyframes floatY{50%{transform:translateY(-10px)}}
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 22px var(--pad) 90px;
-    }
+/* ===== Trusted bar ===== */
+.trusted{padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trustedLabel{text-align:center;color:var(--dim);font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:20px}
+.marquee{display:flex;gap:50px;align-items:center;justify-content:center;flex-wrap:wrap;opacity:.55}
+.marquee span{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;color:var(--muted)}
 
-    /* Header with entrance animation */
-    .top{
-      position: sticky;
-      top: 0;
-      z-index: 60;
-      background: linear-gradient(180deg, rgba(6,6,22,0.78), rgba(6,6,22,0.40));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      animation: slideDown 0.6s var(--ease) both;
-    }
-    @keyframes slideDown{
-      from{ transform: translateY(-100%); opacity: 0; }
-      to{ transform: translateY(0); opacity: 1; }
-    }
+/* ===== Section head ===== */
+.secHead{text-align:center;max-width:640px;margin:0 auto 50px}
+.secLabel{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--gradSoft);border:1px solid var(--line2);
+  font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px;color:#D8D2FF}
+.secHead h2{font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:14px;font-weight:900}
+.secHead p{color:var(--muted);font-size:1.05rem;line-height:1.7}
 
-    .topInner{
-      max-width: var(--max);
-      margin:0 auto;
-      padding: 12px var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
+/* ===== Cards grid ===== */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{padding:28px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);
+  transition:transform .25s,border-color .25s,background .25s;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,0%),rgba(139,92,246,.12),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{transform:translateY(-4px);border-color:var(--line2);background:var(--panel2)}
+.card:hover::before{opacity:1}
+.cardIcon{width:48px;height:48px;border-radius:14px;background:var(--gradSoft);border:1px solid var(--line2);display:grid;place-items:center;margin-bottom:20px}
+.cardIcon svg{width:22px;height:22px;color:#C4B5FD}
+.card h3{font-size:1.22rem;margin-bottom:10px;letter-spacing:-.01em;font-weight:800}
+.card p{color:var(--muted);line-height:1.7;font-size:.96rem}
 
-    .brand{ display:flex; align-items:center; gap: 12px; min-width: 240px; }
-    .mark{
-      width: 44px; height: 44px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(34,211,238,0.55), transparent 45%),
-        radial-gradient(circle at 70% 30%, rgba(139,92,246,0.70), transparent 55%),
-        radial-gradient(circle at 55% 80%, rgba(255,79,216,0.55), transparent 60%),
-        rgba(255,255,255,0.05);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      position:relative;
-      flex: 0 0 auto;
-    }
-    .mark::after{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(280px 200px at 10% 0%, rgba(255,255,255,0.10), transparent 55%);
-      pointer-events:none;
-    }
-    .mark img{ width:100%; height:100%; object-fit:contain; background: rgba(10,12,30,0.35); }
-    .brandName{ font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.92rem; line-height: 1.05; }
-    .brandTag{ margin-top:2px; font-size: 0.86rem; color: var(--muted); }
+/* ===== Stats ===== */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:32px 24px;background:var(--bg2);text-align:center}
+.stat b{display:block;font-size:clamp(2rem,4vw,3rem);font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
+.stat span{color:var(--muted);font-size:.88rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-top:6px;display:block}
 
-    .nav{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-    .nav a{
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease);
-      outline:none;
-      position:relative;
-      white-space:nowrap;
-    }
-    .nav a::after{
-      content:"";
-      position:absolute;
-      left: 12px; right: 12px; bottom: 5px;
-      height: 2px; border-radius: 999px;
-      background: linear-gradient(90deg, var(--a), var(--b));
-      transform: scaleX(0);
-      transform-origin: left;
-      opacity: 0.9;
-      transition: transform .22s var(--ease);
-    }
-    .nav a:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.10);
-      color: var(--text);
-    }
-    .nav a:hover::after{ transform: scaleX(1); }
-    .nav a:focus-visible{
-      border-color: rgba(34,211,238,0.55);
-      box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
-      color: var(--text);
-    }
+/* ===== Steps ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+@media(max-width:900px){.steps{grid-template-columns:1fr}}
+.step{padding:28px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);position:relative}
+.stepNum{font-size:3rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:16px;letter-spacing:-.04em}
+.step h4{font-size:1.15rem;margin-bottom:8px;font-weight:800}
+.step p{color:var(--muted);font-size:.95rem;line-height:1.7}
 
-    .langBtn{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      color: rgba(230,232,255,0.92);
-      font-weight: 800;
-      font-size: 0.93rem;
-      cursor:pointer;
-      transition: transform .16s var(--ease), background .16s var(--ease), border-color .16s var(--ease);
-      white-space: nowrap;
-      user-select:none;
-    }
-    .langBtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.18);
-    }
-    .langBtn:focus-visible{
-      outline:none;
-      border-color: rgba(34,211,238,0.55);
-      box-shadow: 0 0 0 4px rgba(34,211,238,0.12);
-      color: var(--text);
-    }
+/* ===== Testimonials ===== */
+.testis{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:800px){.testis{grid-template-columns:1fr}}
+.testi{padding:32px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);position:relative}
+.testi::before{content:"“";position:absolute;top:10px;left:24px;font-size:5rem;color:var(--a);opacity:.25;line-height:1;font-family:Georgia,serif}
+.testi p{font-size:1.02rem;line-height:1.75;color:#E8E9FF;margin-bottom:20px;position:relative}
+.testi footer{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;color:#fff}
+.testi b{display:block;font-size:.95rem;font-weight:700}
+.testi small{color:var(--muted);font-size:.82rem}
 
-    .nav .cta{
-      border:0;
-      color:#fff;
-      background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(34,211,238,0.78));
-      box-shadow: 0 16px 36px rgba(0,0,0,0.46);
-      overflow:hidden;
-      position:relative;
-    }
-    .nav .cta::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: conic-gradient(from 120deg, rgba(255,255,255,0.0), rgba(255,255,255,0.22), rgba(255,255,255,0.0));
-      transform: translateX(-60%);
-      opacity: 0.7;
-      transition: transform .55s var(--ease);
-    }
-    .nav .cta:hover::before{ transform: translateX(60%); }
+/* ===== FAQ ===== */
+.faqs{max-width:800px;margin:0 auto}
+.faq{border-bottom:1px solid var(--line);padding:4px 0}
+.faq summary{padding:20px 0;font-weight:700;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;transition:color .2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;color:var(--muted);transition:transform .3s;flex:0 0 auto}
+.faq[open] summary::after{transform:rotate(45deg);color:var(--b)}
+.faq summary:hover{color:var(--b)}
+.faq p{padding:0 0 20px;color:var(--muted);line-height:1.75}
 
-    @media (max-width: 680px){
-      .brand{ min-width: 0; }
-      .brandTag{ display:none; }
-      .nav a:not(.cta){ display:none; }
-    }
+/* ===== CTA ===== */
+.ctaBox{padding:clamp(40px,6vw,70px);border-radius:var(--r);background:
+  radial-gradient(800px 500px at 20% 20%,rgba(139,92,246,.25),transparent 60%),
+  radial-gradient(800px 500px at 90% 80%,rgba(34,211,238,.18),transparent 60%),
+  rgba(10,11,38,.6);border:1px solid var(--line2);text-align:center;position:relative;overflow:hidden}
+.ctaBox h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.03em;margin-bottom:14px;font-weight:900}
+.ctaBox p{color:var(--muted);font-size:1.05rem;max-width:56ch;margin:0 auto 28px}
 
-    /* Hero */
-    .hero{
-      margin-top: 16px;
-      border-radius: calc(var(--r) + 8px);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: var(--shadow);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      overflow:hidden;
-      position:relative;
-      isolation:isolate;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(900px 480px at 18% 22%, rgba(139,92,246,0.18), transparent 70%),
-        radial-gradient(900px 480px at 90% 18%, rgba(34,211,238,0.16), transparent 70%),
-        radial-gradient(900px 520px at 78% 92%, rgba(255,79,216,0.10), transparent 70%);
-      pointer-events:none;
-      opacity: 0.95;
-      z-index:0;
-    }
+/* ===== Contact form ===== */
+.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:900px){.contactGrid{grid-template-columns:1fr}}
+.contactInfo{padding:32px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line)}
+.contactInfo h3{font-size:1.4rem;margin-bottom:12px;font-weight:800}
+.contactInfo p{color:var(--muted);line-height:1.7;margin-bottom:24px}
+.infoRow{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.infoRow .ico{width:40px;height:40px;border-radius:12px;background:var(--gradSoft);border:1px solid var(--line2);display:grid;place-items:center;flex:0 0 auto}
+.infoRow .ico svg{width:18px;height:18px;color:#C4B5FD}
+.infoRow b{display:block;font-size:.95rem;font-weight:700}
+.infoRow span{display:block;color:var(--muted);font-size:.88rem}
+.form{display:grid;gap:14px}
+.form label{display:block;font-size:.85rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+.form input,.form textarea{width:100%;padding:14px 16px;border-radius:var(--r3);background:var(--panel);border:1px solid var(--line2);color:var(--text);font:inherit;transition:border-color .2s,background .2s}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--b);background:var(--panel2)}
+.form textarea{resize:vertical;min-height:120px}
 
-    .spot{
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(600px 420px at var(--x, 50%) var(--y, 30%), rgba(255,255,255,0.10), transparent 60%);
-      pointer-events:none;
-      z-index:1;
-      opacity: 0.85;
-      transition: opacity .2s var(--ease);
-    }
-    @media (hover: none){ .spot{ display:none; } }
+/* ===== Footer ===== */
+footer.foot{padding:60px var(--pad) 30px;border-top:1px solid var(--line);margin-top:60px}
+.footGrid{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:800px){.footGrid{grid-template-columns:1fr 1fr;gap:30px}}
+@media(max-width:480px){.footGrid{grid-template-columns:1fr}}
+.footCol h5{font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:16px;font-weight:700}
+.footCol a{display:block;padding:6px 0;color:var(--muted);font-size:.92rem;transition:color .2s}
+.footCol a:hover{color:var(--text)}
+.footBottom{max-width:var(--max);margin:40px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.socials{display:flex;gap:10px}
+.socials a{width:36px;height:36px;border-radius:10px;border:1px solid var(--line2);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .15s}
+.socials a:hover{background:var(--panel2);border-color:var(--a);transform:translateY(-2px)}
+.socials svg{width:16px;height:16px}
 
-    .heroInner{
-      position:relative;
-      z-index:2;
-      padding: clamp(18px, 3vw, 26px);
-      display:grid;
-      grid-template-columns: 1.2fr 0.95fr;
-      gap: 14px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .heroInner{ grid-template-columns: 1fr; }
-    }
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.on{opacity:1;transform:none}
 
-    .heroMain{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      padding: clamp(16px, 2.6vw, 22px);
-      position:relative;
-      overflow:hidden;
-      min-width: 0;
-    }
-    .heroMain::after{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(360px 220px at 12% 0%, rgba(255,255,255,0.08), transparent 60%);
-      pointer-events:none;
-    }
+/* ===== Toast ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);padding:12px 20px;border-radius:999px;
+  background:rgba(10,11,38,.95);backdrop-filter:blur(16px);border:1px solid var(--line2);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;z-index:80;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:10px}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:16px;height:16px;color:#10B981}
 
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(2.05rem, 5.2vw, 3.35rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-    .grad{
-      background: linear-gradient(135deg, #ffffff, #d8d2ff 48%, #eaffff 78%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
-    }
+/* ===== Reduced motion ===== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .aurora::before,.aurora::after{animation:none}
+  .reveal{opacity:1;transform:none}
+}
 
-    .sub{
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 1.04rem;
-      line-height: 1.85;
-      max-width: 70ch;
-    }
-
-    .microRow{ display:flex; flex-wrap:wrap; gap: 8px; margin: 14px 0 2px; }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      color: rgba(230,232,255,0.92);
-      font-size: 0.92rem;
-      line-height:1;
-      user-select:none;
-    }
-    .chip i{ width: 7px; height:7px; border-radius:999px; background: var(--a); box-shadow: 0 0 0 6px rgba(139,92,246,0.10); }
-    .chip.alt i{ background: var(--b); box-shadow: 0 0 0 6px rgba(34,211,238,0.10); }
-    .chip.pink i{ background: var(--c); box-shadow: 0 0 0 6px rgba(255,79,216,0.10); }
-
-    .bullets{
-      margin: 16px 0 18px;
-      padding: 0;
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      color: rgba(230,232,255,0.90);
-      font-size: 0.98rem;
-      line-height:1.65;
-    }
-    .bullets li{ display:flex; align-items:flex-start; gap: 10px; }
-    .tick{
-      width: 26px; height: 26px;
-      border-radius: 11px;
-      display:grid;
-      place-items:center;
-      background: rgba(34,211,238,0.10);
-      border: 1px solid rgba(34,211,238,0.18);
-      color:#dffcff;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-    .tick svg{ width: 15px; height: 15px; }
-
-    .actions{ display:flex; gap: 10px; flex-wrap:wrap; align-items:center; margin-top: 4px; }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor:pointer;
-      transition: transform .16s var(--ease), border-color .16s var(--ease), background .16s var(--ease), box-shadow .16s var(--ease);
-      outline:none;
-      white-space:nowrap;
-      position:relative;
-      overflow:hidden;
-      touch-action: manipulation;
-    }
-    .btn:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 18px 46px rgba(0,0,0,0.40);
-    }
-    .btn:active{ transform: translateY(0); }
-    .btn:focus-visible{
-      border-color: rgba(34,211,238,0.55);
-      box-shadow: 0 0 0 4px rgba(34,211,238,0.12), 0 18px 46px rgba(0,0,0,0.40);
-    }
-    .btnPrimary{
-      border:0;
-      background: linear-gradient(135deg, rgba(139,92,246,1) 0%, rgba(99,102,241,0.9) 50%, rgba(34,211,238,0.85) 100%);
-      background-size: 200% 200%;
-      box-shadow: 0 18px 46px rgba(0,0,0,0.50);
-      animation: gradientShift 3s ease infinite;
-    }
-    @keyframes gradientShift{
-      0%, 100%{ background-position: 0% 50%; }
-      50%{ background-position: 100% 50%; }
-    }
-    .btnPrimary::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: conic-gradient(from 120deg, rgba(255,255,255,0.0), rgba(255,255,255,0.22), rgba(255,255,255,0.0));
-      transform: translateX(-60%);
-      opacity: 0.70;
-      transition: transform .60s var(--ease);
-    }
-    .btnPrimary:hover::before{ transform: translateX(60%); }
-    .btnGhost{ color: rgba(230,232,255,0.90); }
-    .btn svg{ width: 16px; height:16px; opacity:.95; }
-
-    @media (max-width: 520px){
-      .btn{ width: 100%; }
-    }
-
-    /* Right panel */
-    .heroArt{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow2);
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding: 16px;
-      transform-style: preserve-3d;
-      will-change: transform;
-      min-width: 0;
-    }
-    .heroArt::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(560px 360px at 18% 30%, rgba(34,211,238,0.12), transparent 70%),
-        radial-gradient(560px 360px at 85% 20%, rgba(139,92,246,0.18), transparent 70%),
-        radial-gradient(560px 360px at 70% 92%, rgba(255,79,216,0.10), transparent 70%);
-      pointer-events:none;
-      opacity:0.95;
-    }
-    .heroArt > *{ position:relative; z-index:1; }
-    .heroArt svg{ width: 18px; height: 18px; display:block; }
-
-    .orbWrap{ display:grid; place-items:center; padding: 10px 0 4px; }
-    .orb{
-      width: min(340px, 100%);
-      aspect-ratio: 1 / 1;
-      border-radius: 999px;
-      position:relative;
-      display:grid;
-      place-items:center;
-      transform: translateZ(20px);
-      overflow:hidden;
-    }
-    .orb::before{
-      content:"";
-      position:absolute;
-      inset: 6%;
-      border-radius:999px;
-      background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), transparent 45%),
-        radial-gradient(circle at 70% 35%, rgba(34,211,238,0.20), transparent 55%),
-        radial-gradient(circle at 55% 80%, rgba(255,79,216,0.14), transparent 60%),
-        radial-gradient(circle at 45% 55%, rgba(139,92,246,0.24), transparent 62%),
-        rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.55);
-      filter: saturate(1.05);
-      animation: orbPulse 4.2s var(--ease) infinite alternate;
-    }
-    .orb::after{
-      content:"";
-      position:absolute;
-      inset: -6%;
-      border-radius:999px;
-      background: conic-gradient(from 120deg, rgba(34,211,238,0.0), rgba(34,211,238,0.65), rgba(139,92,246,0.0), rgba(255,79,216,0.55), rgba(34,211,238,0.0));
-      filter: blur(10px);
-      opacity: 0.45;
-      animation: spin 10s linear infinite;
-    }
-    @keyframes spin{ to{ transform: rotate(360deg); } }
-    @keyframes orbPulse{ from{ transform: scale(1); } to{ transform: scale(1.03); } }
-
-    .orbLogo{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform: translate(-50%, -50%);
-      width: min(180px, 55%);
-      aspect-ratio: 1 / 1;
-      display:grid;
-      place-items:center;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(10,12,30,0.40);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-      overflow:hidden;
-    }
-    .orbLogo img{
-      width: 82%;
-      height: 82%;
-      object-fit: contain;
-      display:block;
-    }
-
-    .miniList{ display:grid; gap: 10px; margin-top: 10px; }
-    .miniItem{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      padding: 12px;
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      transition: transform .16s var(--ease), border-color .16s var(--ease), background .16s var(--ease);
-    }
-    .miniItem:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-    }
-    .miniIcon{
-      width: 34px; height: 34px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: rgba(139,92,246,0.12);
-      border: 1px solid rgba(139,92,246,0.18);
-      flex: 0 0 auto;
-    }
-    .miniIcon.alt{ background: rgba(34,211,238,0.10); border-color: rgba(34,211,238,0.18); }
-    .miniIcon.pink{ background: rgba(255,79,216,0.10); border-color: rgba(255,79,216,0.18); }
-    .miniIcon svg{ width: 18px; height:18px; }
-    .miniItem b{ display:block; margin: 0 0 2px; letter-spacing: -0.01em; font-size: 0.98rem; }
-    .miniItem span{ display:block; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
-
-    /* Sections */
-    .section{ margin-top: 28px; }
-    .head{ display:flex; align-items:flex-end; justify-content:space-between; gap: 14px; margin: 18px 0 12px; }
-    .head h2{ margin:0; font-size: 1.40rem; letter-spacing:-0.02em; }
-    .head p{ margin:0; color: var(--muted); font-size: 0.98rem; line-height:1.6; max-width: 70ch; }
-
-    .grid{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
-
-    .card{
-      border-radius: var(--r2);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow2);
-      padding: 16px;
-      position:relative;
-      overflow:hidden;
-      min-height: 140px;
-      transform-style: preserve-3d;
-      will-change: transform;
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease);
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(420px 220px at var(--cx, 20%) var(--cy, 10%), rgba(255,255,255,0.10), transparent 55%);
-      opacity: 0;
-      transition: opacity .18s var(--ease);
-      pointer-events:none;
-    }
-    .card:hover{
-      border-color: rgba(139, 92, 246, 0.25);
-      background: rgba(255,255,255,0.055);
-      box-shadow: var(--shadow2), 0 0 30px rgba(139, 92, 246, 0.08), 0 0 60px rgba(34, 211, 238, 0.05);
-    }
-    .card:hover::before{ opacity: 1; }
-
-    .label{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(232,231,255,0.95);
-      user-select:none;
-    }
-    .label i{ width: 7px; height: 7px; border-radius: 999px; background: var(--a); box-shadow: 0 0 0 6px rgba(139,92,246,0.10); }
-    .label.alt i{ background: var(--b); box-shadow: 0 0 0 6px rgba(34,211,238,0.10); }
-    .label.pink i{ background: var(--c); box-shadow: 0 0 0 6px rgba(255,79,216,0.10); }
-
-    .card h3{ margin: 12px 0 6px; font-size: 1.05rem; letter-spacing:-0.01em; transform: translateZ(18px); }
-    .card p{ margin:0; color: var(--muted); font-size: 0.95rem; line-height:1.75; max-width: 64ch; transform: translateZ(14px); }
-
-    .stepper{
-      border-radius: var(--r);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .step{
-      display:grid;
-      grid-template-columns: 54px 1fr;
-      gap: 12px;
-      padding: 14px 16px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
-    }
-    .step:first-child{ border-top: 0; }
-    .num{
-      width: 44px; height:44px;
-      border-radius: 16px;
-      display:grid;
-      place-items:center;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      color: rgba(233,231,255,0.95);
-    }
-    .step b{ display:block; margin: 2px 0 4px; letter-spacing: -0.01em; }
-    .step span{ display:block; color: var(--muted); line-height: 1.65; font-size: 0.94rem; max-width: 80ch; }
-
-    .ctaBlock{
-      margin-top: 22px;
-      border-radius: calc(var(--r) + 6px);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(34,211,238,0.08));
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .ctaBlock::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(620px 380px at 18% 30%, rgba(139,92,246,0.24), transparent 70%),
-        radial-gradient(720px 440px at 90% 70%, rgba(34,211,238,0.16), transparent 72%),
-        radial-gradient(720px 440px at 55% 110%, rgba(255,79,216,0.10), transparent 70%);
-      pointer-events:none;
-      opacity: 0.95;
-      z-index:0;
-    }
-    .ctaInner{
-      position:relative;
-      z-index:1;
-      padding: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .ctaInner h3{ margin:0; font-size: 1.22rem; letter-spacing:-0.01em; }
-    .ctaInner p{ margin: 6px 0 0; color: var(--muted); line-height: 1.75; max-width: 74ch; }
-
-    footer{
-      padding: 26px var(--pad) 28px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: var(--muted);
-    }
-    .foot{
-      max-width: var(--max);
-      margin: 0 auto;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-
-    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
-    .reveal.on{ opacity:1; transform:none; }
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%) translateY(18px);
-      opacity:0;
-      pointer-events:none;
-      z-index:80;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(10,12,30,0.72);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: var(--shadow2);
-      padding: 10px 12px;
-      color: rgba(230,232,255,0.92);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      transition: opacity .22s var(--ease), transform .22s var(--ease);
-      max-width: calc(100vw - 24px);
-    }
-    .toast.on{ opacity:1; transform: translateX(-50%) translateY(0); }
-    .toast svg{ width:16px; height:16px; color: var(--b); }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .blob, .orb::after, .orb::before{ animation:none !important; }
-      .reveal{ opacity:1; transform:none; transition:none; }
-      .btn, .nav a, .card, .miniItem, .langBtn, .btnPrimary{ transition:none; animation:none; }
-      .spot{ display:none; }
-      .top{ animation:none; }
-      .bgFX{ opacity: 0.85; transition:none; }
-    }
-
-    /* Mobile performance optimization */
-    @media (max-width: 768px){
-      .blob{ animation-duration: 20s; }
-      .orb::after{ animation-duration: 15s; }
-    }
-
-    /* RTL tweaks (Arabic) */
-    html[dir="rtl"] .topInner{ flex-direction: row-reverse; }
-    html[dir="rtl"] .nav{ justify-content: flex-start; }
-    html[dir="rtl"] .brand{ text-align:right; }
-    html[dir="rtl"] .microRow{ flex-direction: row-reverse; }
-    html[dir="rtl"] .bullets li{ flex-direction: row-reverse; }
-    html[dir="rtl"] .actions{ flex-direction: row-reverse; }
-    html[dir="rtl"] .ctaInner{ flex-direction: row-reverse; }
-    html[dir="rtl"] .foot{ flex-direction: row-reverse; }
-    html[dir="rtl"] .nav a::after{ transform-origin: right; }
-
-    @media (min-width: 981px){
-      html[dir="rtl"] .heroMain{ order: 2; }
-      html[dir="rtl"] .heroArt{ order: 1; }
-    }
-  </style>
+/* ===== RTL ===== */
+html[dir="rtl"] .floatCard.fc1{left:auto;right:-4%}
+html[dir="rtl"] .floatCard.fc2{right:auto;left:-6%}
+html[dir="rtl"] .floatCard.fc3{right:auto;left:-10%}
+html[dir="rtl"] .testi::before{left:auto;right:24px}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] h4{font-weight:900}
+</style>
 </head>
-
 <body>
-  <!-- Skip Link for Accessibility -->
-  <a href="#hero" class="skip-link">Skip to main content</a>
 
-  <div class="bgFX" aria-hidden="true">
-    <div class="blob"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-  </div>
+<a href="#main" class="skip">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <header class="top" id="top">
-    <div class="topInner">
-      <a class="brand" href="#top" aria-label="Purple Ocean home">
-        <div class="mark" aria-hidden="true"><img src="logo.png" alt="" loading="lazy"></div>
-        <div>
-          <div class="brandName">Purple Ocean</div>
-          <div class="brandTag" data-i18n="brand_tag">Better clarity. Better outcomes.</div>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Navigation">
-        <a href="#about" data-i18n="nav_about">About</a>
-        <a href="#focus" data-i18n="nav_focus">Focus</a>
-        <a href="#how" data-i18n="nav_how">How we work</a>
-        <button class="langBtn" id="langBtn" type="button" aria-label="Switch language">عربي</button>
-        <a class="cta" id="navContact" data-mailto="inquiry" href="#">
-          <span data-i18n="nav_contact">Contact</span>
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero reveal" id="hero" aria-label="Hero">
-      <div class="spot" id="spot" aria-hidden="true"></div>
-
-      <div class="heroInner">
-        <div class="heroMain">
-          <h1 data-i18n="hero_title">Growth shouldn't <span class="grad">feel chaotic.</span></h1>
-
-          <p class="sub" data-i18n="hero_sub">
-            Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.
-          </p>
-
-          <div class="microRow" aria-label="Key outcomes">
-            <span class="chip" data-i18n="chip_clarity"><i aria-hidden="true"></i> Clarity</span>
-            <span class="chip alt" data-i18n="chip_direction"><i aria-hidden="true"></i> Direction</span>
-            <span class="chip pink" data-i18n="chip_execution"><i aria-hidden="true"></i> Execution</span>
-          </div>
-
-          <ul class="bullets">
-            <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </span><span data-i18n="b1">Clear positioning and messaging that people understand fast</span></li>
-
-            <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </span><span data-i18n="b2">Insight-driven direction based on what the data is actually saying</span></li>
-
-            <li><span class="tick" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </span><span data-i18n="b3">Less noise, cleaner execution</span></li>
-          </ul>
-
-          <div class="actions">
-            <a class="btn btnPrimary" id="heroContact" data-mailto="inquiry" href="#">
-              <span style="position:relative; z-index:1;" data-i18n="btn_contact">Contact Us</span>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" style="position:relative; z-index:1;">
-                <path d="M7 17l10-10M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </a>
-
-            <button class="btn btnGhost" id="copyEmailBtn" type="button">
-              <span data-i18n="btn_copy">Copy email</span>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 9h10v10H9V9Z" stroke="currentColor" stroke-width="2"/>
-                <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <aside class="heroArt" id="tiltHero" aria-label="Highlights">
-          <div class="orbWrap">
-            <div class="orb" aria-hidden="true">
-              <div class="orbLogo" aria-hidden="true">
-                <img src="po.svg" alt="" loading="lazy">
-              </div>
-            </div>
-          </div>
-
-          <div class="miniList">
-            <div class="miniItem">
-              <div class="miniIcon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 17l6-6 4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M20 7v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div><b data-i18n="m1t">Clarity on priorities</b><span data-i18n="m1s">What to focus on, and what to test next.</span></div>
-            </div>
-
-            <div class="miniItem">
-              <div class="miniIcon alt" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M4 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div><b data-i18n="m2t">Evidence-based direction</b><span data-i18n="m2s">Decisions grounded in performance signals and customer behavior.</span></div>
-            </div>
-
-            <div class="miniItem">
-              <div class="miniIcon pink" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M7 7h10M7 12h10M7 17h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M5 6a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
-                </svg>
-              </div>
-              <div><b data-i18n="m3t">Cleaner execution</b><span data-i18n="m3s">Simple structure that keeps teams aligned across channels.</span></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about" class="section reveal" aria-label="About">
-      <div class="head"><div><h2 data-i18n="about_title">About</h2><p data-i18n="about_sub">Professional, business-first support — without the fluff.</p></div></div>
-      <div class="grid">
-        <div class="card" data-tilt>
-          <div class="label"><i></i> <span data-i18n="a_label1">Direction</span></div>
-          <h3 data-i18n="a_h1">Clearer decisions</h3>
-          <p data-i18n="a_p1">We help leadership teams reduce complexity and choose a focused path forward.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label alt"><i></i> <span data-i18n="a_label2">Standards</span></div>
-          <h3 data-i18n="a_h2">Stronger execution</h3>
-          <p data-i18n="a_p2">We support consistent marketing execution that looks premium and performs.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label pink"><i></i> <span data-i18n="a_label3">Simplicity</span></div>
-          <h3 data-i18n="a_h3">Smoother operations</h3>
-          <p data-i18n="a_p3">We simplify workflows and decision flow so teams move faster with less friction.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="focus" class="section reveal" aria-label="Focus">
-      <div class="head"><div><h2 data-i18n="focus_title">What we focus on</h2><p data-i18n="focus_sub">General on purpose — centered on outcomes that compound.</p></div></div>
-      <div class="grid">
-        <div class="card" data-tilt>
-          <div class="label"><i></i> <span data-i18n="f_label1">Clarity</span></div>
-          <h3 data-i18n="f_h1">Make the message obvious</h3>
-          <p data-i18n="f_p1">We simplify what you do, who it's for, and why it matters — so people understand you fast.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label alt"><i></i> <span data-i18n="f_label2">Analysis</span></div>
-          <h3 data-i18n="f_h2">See what to improve next</h3>
-          <p data-i18n="f_p2">We review performance, customer journey, and market signals to identify what to change.</p>
-        </div>
-
-        <div class="card" data-tilt>
-          <div class="label pink"><i></i> <span data-i18n="f_label3">Marketing direction</span></div>
-          <h3 data-i18n="f_h3">Fewer, stronger moves</h3>
-          <p data-i18n="f_p3">We translate insights into priorities: what to focus on, what to stop, and what to test.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="section reveal" aria-label="How we work">
-      <div class="head"><div><h2 data-i18n="how_title">How we work</h2><p data-i18n="how_sub">Simple, structured, measurable.</p></div></div>
-
-      <div class="stepper">
-        <div class="step">
-          <div class="num">01</div>
-          <div><b data-i18n="s1t">Understand the business</b><span data-i18n="s1s">We start with the business reality: goals, performance signals, and what success must look like.</span></div>
-        </div>
-        <div class="step">
-          <div class="num">02</div>
-          <div><b data-i18n="s2t">Reduce complexity to priorities</b><span data-i18n="s2s">We compress everything into a few high-impact moves — clear direction, and clear measurement.</span></div>
-        </div>
-        <div class="step">
-          <div class="num">03</div>
-          <div><b data-i18n="s3t">Execute with consistency</b><span data-i18n="s3s">Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ctaBlock reveal" aria-label="Contact CTA">
-      <div class="ctaInner">
-        <div>
-          <h3 data-i18n="cta_title">Want clarity on what to do next?</h3>
-          <p data-i18n="cta_sub">Send a short intro — we'll respond with next steps and a simple way to move forward.</p>
-        </div>
-        <div class="actions" style="margin:0;">
-          <a class="btn btnPrimary" id="ctaContact" data-mailto="inquiry" href="#">
-            <span style="position:relative; z-index:1;" data-i18n="btn_contact">Contact Us</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="foot">
+<header class="top" id="top">
+  <div class="topInner">
+    <a class="brand" href="#top">
+      <div class="mark"><img src="logo.png" alt="Purple Ocean logo"></div>
       <div>
-        <div style="color:var(--text); font-weight:700;">
-          © <span id="year"></span> Purple Ocean
+        <div class="brandName">Purple Ocean</div>
+        <div class="brandTag" data-i18n="brand_tag">Better clarity. Better outcomes.</div>
+      </div>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="link" href="#about" data-i18n="nav_about">About</a>
+      <a class="link" href="#services" data-i18n="nav_services">Services</a>
+      <a class="link" href="#how" data-i18n="nav_how">Process</a>
+      <a class="link" href="#faq" data-i18n="nav_faq">FAQ</a>
+      <button class="langBtn" id="langBtn" type="button">عربي</button>
+      <a class="cta" href="#contact" data-i18n="nav_contact">Contact</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="#about" data-i18n="nav_about">About</a>
+  <a href="#services" data-i18n="nav_services">Services</a>
+  <a href="#how" data-i18n="nav_how">Process</a>
+  <a href="#faq" data-i18n="nav_faq">FAQ</a>
+  <a href="#contact" data-i18n="nav_contact">Contact</a>
+</nav>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="heroGrid">
+      <div class="reveal">
+        <span class="badge"><span class="dot"></span><span data-i18n="badge">Now accepting new partners for 2026</span></span>
+        <h1><span data-i18n="hero_a">Growth shouldn't</span> <span class="grad" data-i18n="hero_b">feel chaotic.</span></h1>
+        <p class="heroSub" data-i18n="hero_sub">Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.</p>
+        <div class="heroBtns">
+          <a class="btn btnPrimary" href="#contact"><span data-i18n="btn_start">Start a conversation</span>
+            <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btnGhost" href="#services" data-i18n="btn_services">See services</a>
+        </div>
+        <div class="heroStats">
+          <div><b>+40%</b><span data-i18n="st1">Avg. performance lift</span></div>
+          <div><b>12+</b><span data-i18n="st2">Industries served</span></div>
+          <div><b>100%</b><span data-i18n="st3">Client retention</span></div>
         </div>
       </div>
-      <div><small style="opacity:0.9;" data-i18n="footer_line">Based in Saudi Arabia.</small></div>
+      <div class="heroArt reveal" aria-hidden="true">
+        <div class="orb"></div>
+        <div class="orbInner"><img src="po.svg" alt=""></div>
+        <div class="floatCard fc1"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 17l6-6 4 4 6-6" stroke="#22D3EE" stroke-width="2" stroke-linecap="round"/></svg></div><span data-i18n="fc1">Growth +38%</span></div>
+        <div class="floatCard fc2"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#8B5CF6" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/></svg></div><span data-i18n="fc2">Decisions in days</span></div>
+        <div class="floatCard fc3"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 7h7l-5.5 4.5 2 7.5-6-4.5-6 4.5 2-7.5L2 9h7z" stroke="#FF4FD8" stroke-width="2" stroke-linejoin="round"/></svg></div><span data-i18n="fc3">Premium execution</span></div>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <span id="toastText" data-i18n="toast_copied">Copied.</span>
+  <!-- TRUSTED BAR -->
+  <section class="trusted">
+    <div class="wrap">
+      <div class="trustedLabel" data-i18n="trusted">Trusted by ambitious teams</div>
+      <div class="marquee">
+        <span>◆ NORTHWIND</span><span>◇ ATLAS CO.</span><span>◈ NOVARA</span><span>◆ HELIX</span><span>◇ KITE LABS</span><span>◈ MERIDIAN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / SERVICES -->
+  <section class="section wrap" id="about">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="about_label">About us</span>
+      <h2 data-i18n="about_title">Professional, business-first support — without the fluff.</h2>
+      <p data-i18n="about_sub">We combine strategic analysis with on-the-ground marketing expertise to help you move with confidence.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><h3 data-i18n="a_h1">Clearer decisions</h3><p data-i18n="a_p1">We help leadership teams reduce complexity and choose a focused path forward.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12l4-4 4 4 4-6 6 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="a_h2">Stronger execution</h3><p data-i18n="a_p2">We support consistent marketing execution that looks premium and performs.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3 data-i18n="a_h3">Smoother operations</h3><p data-i18n="a_p3">We simplify workflows and decision flow so teams move faster with less friction.</p></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="wrap reveal">
+    <div class="stats">
+      <div class="stat"><b>+40%</b><span data-i18n="stat1">Performance lift</span></div>
+      <div class="stat"><b>12+</b><span data-i18n="stat2">Industries</span></div>
+      <div class="stat"><b>98%</b><span data-i18n="stat3">Client satisfaction</span></div>
+      <div class="stat"><b>24h</b><span data-i18n="stat4">First response</span></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section wrap" id="services">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="serv_label">Services</span>
+      <h2 data-i18n="serv_title">What we focus on</h2>
+      <p data-i18n="serv_sub">A focused set of services, designed to compound outcomes over time.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></div><h3 data-i18n="s_h1">Strategic clarity</h3><p data-i18n="s_p1">We simplify what you do, who it's for, and why it matters — so people understand you fast.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M7 15l3-3 3 2 4-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="s_h2">Marketing analysis</h3><p data-i18n="s_p2">We review performance, customer journey, and market signals to identify what to change next.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h3 data-i18n="s_h3">Campaign direction</h3><p data-i18n="s_p3">We translate insights into priorities: what to focus on, what to stop, and what to test.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" stroke="currentColor" stroke-width="2"/></svg></div><h3 data-i18n="s_h4">Brand positioning</h3><p data-i18n="s_p4">Clear, differentiated messaging that makes your value obvious in seconds.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="s_h5">Performance audits</h3><p data-i18n="s_p5">Deep review of campaigns, funnels, and creative — with actions prioritized by impact.</p></div>
+      <div class="card reveal"><div class="cardIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke="currentColor" stroke-width="2"/></svg></div><h3 data-i18n="s_h6">Growth operations</h3><p data-i18n="s_p6">Lightweight systems and rituals that keep teams aligned and moving at pace.</p></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section wrap" id="how">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="how_label">Process</span>
+      <h2 data-i18n="how_title">How we work</h2>
+      <p data-i18n="how_sub">Simple, structured, measurable — from first call to measurable results.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="stepNum">01</div><h4 data-i18n="p1t">Understand</h4><p data-i18n="p1s">We start with your business reality: goals, performance signals, and what success must look like.</p></div>
+      <div class="step reveal"><div class="stepNum">02</div><h4 data-i18n="p2t">Prioritize</h4><p data-i18n="p2s">We compress everything into a few high-impact moves — clear direction and clear measurement.</p></div>
+      <div class="step reveal"><div class="stepNum">03</div><h4 data-i18n="p3t">Execute</h4><p data-i18n="p3s">Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section wrap">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="t_label">Testimonials</span>
+      <h2 data-i18n="t_title">Trusted by teams who care about outcomes</h2>
+    </div>
+    <div class="testis">
+      <div class="testi reveal"><p data-i18n="tq1">They cut through the noise and gave us a clear plan in two weeks. Our campaigns finally feel focused.</p><footer><div class="avatar">SA</div><div><b data-i18n="tn1">Sara A.</b><small data-i18n="tr1">Head of Marketing, Retail</small></div></footer></div>
+      <div class="testi reveal"><p data-i18n="tq2">Purple Ocean acts like part of our team. The quality of analysis and clarity of direction is unmatched.</p><footer><div class="avatar">MH</div><div><b data-i18n="tn2">Mohammed H.</b><small data-i18n="tr2">Founder, SaaS</small></div></footer></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap" id="faq">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="faq_label">FAQ</span>
+      <h2 data-i18n="faq_title">Questions, answered</h2>
+    </div>
+    <div class="faqs reveal">
+      <details class="faq"><summary data-i18n="q1">Who do you work with?</summary><p data-i18n="aq1">Ambitious SMBs, scale-ups, and marketing leaders in KSA and the wider region who want clearer direction and stronger execution.</p></details>
+      <details class="faq"><summary data-i18n="q2">How do engagements start?</summary><p data-i18n="aq2">We begin with a short intro call, followed by a structured clarity sprint to align on goals, signals, and priorities.</p></details>
+      <details class="faq"><summary data-i18n="q3">Do you replace an agency?</summary><p data-i18n="aq3">Often we complement agencies by giving them sharper direction. In some cases, we take on end-to-end strategy and execution oversight.</p></details>
+      <details class="faq"><summary data-i18n="q4">How fast will we see results?</summary><p data-i18n="aq4">Clarity appears within days. Performance improvements typically compound over the first 60–90 days.</p></details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section wrap" id="contact">
+    <div class="secHead reveal">
+      <span class="secLabel" data-i18n="c_label">Contact</span>
+      <h2 data-i18n="c_title">Want clarity on what to do next?</h2>
+      <p data-i18n="c_sub">Send a short intro — we'll respond with next steps and a simple way to move forward.</p>
+    </div>
+    <div class="contactGrid">
+      <div class="contactInfo reveal">
+        <h3 data-i18n="ci_title">Let's talk</h3>
+        <p data-i18n="ci_sub">We typically respond within 24 hours. Share a bit of context and we'll take it from there.</p>
+        <div class="infoRow"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 6l8 7 8-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b>Email</b><span>info@purpleocean.sa</span></div></div>
+        <div class="infoRow"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a8 8 0 018 8c0 5-8 12-8 12S4 15 4 10a8 8 0 018-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg></div><div><b data-i18n="loc_t">Location</b><span data-i18n="loc_s">Jeddah, Saudi Arabia</span></div></div>
+        <div class="infoRow"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div><b data-i18n="hr_t">Hours</b><span data-i18n="hr_s">Sun–Thu, 9:00 – 18:00 AST</span></div></div>
+      </div>
+      <form class="form reveal" id="contactForm" data-i18n-placeholders>
+        <div><label data-i18n="fl_name">Your name</label><input type="text" name="name" required placeholder="Jane Doe"></div>
+        <div><label data-i18n="fl_email">Email</label><input type="email" name="email" required placeholder="you@company.com"></div>
+        <div><label data-i18n="fl_org">Organization</label><input type="text" name="org" placeholder="Company name"></div>
+        <div><label data-i18n="fl_msg">How can we help?</label><textarea name="msg" required placeholder="A few lines about your goals..."></textarea></div>
+        <button class="btn btnPrimary" type="submit"><span data-i18n="fl_send">Send message</span>
+          <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="footGrid">
+    <div class="footCol">
+      <div class="brand" style="margin-bottom:16px">
+        <div class="mark"><img src="logo.png" alt=""></div>
+        <div><div class="brandName">Purple Ocean</div><div class="brandTag" data-i18n="brand_tag">Better clarity. Better outcomes.</div></div>
+      </div>
+      <p style="color:var(--muted);font-size:.92rem;max-width:36ch" data-i18n="f_about">Business and marketing analysis for ambitious teams. Based in Saudi Arabia.</p>
+    </div>
+    <div class="footCol"><h5 data-i18n="f_company">Company</h5><a href="#about" data-i18n="nav_about">About</a><a href="#services" data-i18n="nav_services">Services</a><a href="#how" data-i18n="nav_how">Process</a></div>
+    <div class="footCol"><h5 data-i18n="f_resources">Resources</h5><a href="#faq" data-i18n="nav_faq">FAQ</a><a href="#contact" data-i18n="nav_contact">Contact</a></div>
+    <div class="footCol"><h5 data-i18n="f_connect">Connect</h5>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v16H4zM6 2a2 2 0 110 4 2 2 0 010-4zM10 8h4v2a4 4 0 018 0v10h-4v-8a2 2 0 00-4 0v8h-4V8z"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 3h3l-7 8 8 10h-6l-5-6-5 6H3l7-9L3 3h6l4 5z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      </div>
+    </div>
   </div>
+  <div class="footBottom">
+    <div>© <span id="year"></span> Purple Ocean. <span data-i18n="f_rights">All rights reserved.</span></div>
+    <div data-i18n="f_loc">Jeddah, Saudi Arabia</div>
+  </div>
+</footer>
 
-  <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+<div class="toast" id="toast" role="status"><svg viewBox="0 0 24 24" fill="none"><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="toastText">Copied.</span></div>
 
-    // Lazy load background effects
-    window.addEventListener('load', () => {
-      document.querySelector('.bgFX')?.classList.add('loaded');
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = matchMedia('(hover:hover)').matches;
+
+  $('#year').textContent = new Date().getFullYear();
+
+  // Header scroll effect
+  const top = $('#top');
+  addEventListener('scroll', () => top.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
+  // Reveal
+  if ('IntersectionObserver' in window && !reduced){
+    const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('on')), {threshold:.12});
+    $$('.reveal').forEach(el => io.observe(el));
+  } else $$('.reveal').forEach(el => el.classList.add('on'));
+
+  // Cursor glow (throttled)
+  if (canHover && !reduced){
+    const cg = $('#cursorGlow');
+    let x=0,y=0,rx=0,ry=0,raf;
+    addEventListener('pointermove', e=>{x=e.clientX;y=e.clientY;cg.style.opacity='1';if(!raf)raf=requestAnimationFrame(tick)});
+    function tick(){rx+=(x-rx)*.12;ry+=(y-ry)*.12;cg.style.left=rx+'px';cg.style.top=ry+'px';if(Math.abs(x-rx)>.5||Math.abs(y-ry)>.5)raf=requestAnimationFrame(tick);else raf=null}
+  }
+
+  // Card parallax (mouse)
+  if (canHover && !reduced){
+    $$('.card').forEach(c => c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+      c.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+    }));
+  }
+
+  // Mobile drawer
+  const ham = $('#hamburger'), drawer = $('#drawer');
+  ham.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    ham.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    drawer.classList.remove('open'); ham.classList.remove('open'); document.body.style.overflow='';
+  }));
+
+  // Toast
+  const toast=$('#toast'), toastText=$('#toastText'); let tt;
+  function showToast(t){toastText.textContent=t;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),2000)}
+
+  // Contact form -> mailto
+  $('#contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    const lang = currentLang;
+    const subj = encodeURIComponent((lang==='ar'?'استفسار من ':'Inquiry from ')+f.name.value);
+    const body = encodeURIComponent(
+      (lang==='ar'?`الاسم: ${f.name.value}\nالبريد: ${f.email.value}\nالجهة: ${f.org.value}\n\n${f.msg.value}`
+                  :`Name: ${f.name.value}\nEmail: ${f.email.value}\nOrg: ${f.org.value}\n\n${f.msg.value}`)
+    );
+    location.href = `mailto:info@purpleocean.sa?subject=${subj}&body=${body}`;
+    showToast(lang==='ar'?'جاري فتح البريد...':'Opening your email app...');
+  });
+
+  // ===== i18n =====
+  const I18N = {
+    en:{
+      brand_tag:"Better clarity. Better outcomes.",
+      nav_about:"About",nav_services:"Services",nav_how:"Process",nav_faq:"FAQ",nav_contact:"Contact",
+      badge:"Now accepting new partners for 2026",
+      hero_a:"Growth shouldn't",hero_b:"feel chaotic.",
+      hero_sub:"Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
+      btn_start:"Start a conversation",btn_services:"See services",
+      st1:"Avg. performance lift",st2:"Industries served",st3:"Client retention",
+      fc1:"Growth +38%",fc2:"Decisions in days",fc3:"Premium execution",
+      trusted:"Trusted by ambitious teams",
+      about_label:"About us",about_title:"Professional, business-first support — without the fluff.",about_sub:"We combine strategic analysis with on-the-ground marketing expertise to help you move with confidence.",
+      a_h1:"Clearer decisions",a_p1:"We help leadership teams reduce complexity and choose a focused path forward.",
+      a_h2:"Stronger execution",a_p2:"We support consistent marketing execution that looks premium and performs.",
+      a_h3:"Smoother operations",a_p3:"We simplify workflows and decision flow so teams move faster with less friction.",
+      stat1:"Performance lift",stat2:"Industries",stat3:"Client satisfaction",stat4:"First response",
+      serv_label:"Services",serv_title:"What we focus on",serv_sub:"A focused set of services, designed to compound outcomes over time.",
+      s_h1:"Strategic clarity",s_p1:"We simplify what you do, who it's for, and why it matters — so people understand you fast.",
+      s_h2:"Marketing analysis",s_p2:"We review performance, customer journey, and market signals to identify what to change next.",
+      s_h3:"Campaign direction",s_p3:"We translate insights into priorities: what to focus on, what to stop, and what to test.",
+      s_h4:"Brand positioning",s_p4:"Clear, differentiated messaging that makes your value obvious in seconds.",
+      s_h5:"Performance audits",s_p5:"Deep review of campaigns, funnels, and creative — with actions prioritized by impact.",
+      s_h6:"Growth operations",s_p6:"Lightweight systems and rituals that keep teams aligned and moving at pace.",
+      how_label:"Process",how_title:"How we work",how_sub:"Simple, structured, measurable — from first call to measurable results.",
+      p1t:"Understand",p1s:"We start with your business reality: goals, performance signals, and what success must look like.",
+      p2t:"Prioritize",p2s:"We compress everything into a few high-impact moves — clear direction and clear measurement.",
+      p3t:"Execute",p3s:"Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.",
+      t_label:"Testimonials",t_title:"Trusted by teams who care about outcomes",
+      tq1:"They cut through the noise and gave us a clear plan in two weeks. Our campaigns finally feel focused.",tn1:"Sara A.",tr1:"Head of Marketing, Retail",
+      tq2:"Purple Ocean acts like part of our team. The quality of analysis and clarity of direction is unmatched.",tn2:"Mohammed H.",tr2:"Founder, SaaS",
+      faq_label:"FAQ",faq_title:"Questions, answered",
+      q1:"Who do you work with?",aq1:"Ambitious SMBs, scale-ups, and marketing leaders in KSA and the wider region who want clearer direction and stronger execution.",
+      q2:"How do engagements start?",aq2:"We begin with a short intro call, followed by a structured clarity sprint to align on goals, signals, and priorities.",
+      q3:"Do you replace an agency?",aq3:"Often we complement agencies by giving them sharper direction. In some cases, we take on end-to-end strategy and execution oversight.",
+      q4:"How fast will we see results?",aq4:"Clarity appears within days. Performance improvements typically compound over the first 60–90 days.",
+      c_label:"Contact",c_title:"Want clarity on what to do next?",c_sub:"Send a short intro — we'll respond with next steps and a simple way to move forward.",
+      ci_title:"Let's talk",ci_sub:"We typically respond within 24 hours. Share a bit of context and we'll take it from there.",
+      loc_t:"Location",loc_s:"Jeddah, Saudi Arabia",hr_t:"Hours",hr_s:"Sun–Thu, 9:00 – 18:00 AST",
+      fl_name:"Your name",fl_email:"Email",fl_org:"Organization",fl_msg:"How can we help?",fl_send:"Send message",
+      f_about:"Business and marketing analysis for ambitious teams. Based in Saudi Arabia.",
+      f_company:"Company",f_resources:"Resources",f_connect:"Connect",f_rights:"All rights reserved.",f_loc:"Jeddah, Saudi Arabia"
+    },
+    ar:{
+      brand_tag:"وضوح أفضل. نتائج أقوى.",
+      nav_about:"من نحن",nav_services:"خدماتنا",nav_how:"منهجيتنا",nav_faq:"الأسئلة",nav_contact:"تواصل",
+      badge:"نستقبل شركاء جدد لعام 2026",
+      hero_a:"النموُّ لا يجب",hero_b:"أن يكون فوضويًا.",
+      hero_sub:"برپل أوشن شريك استراتيجي يساعد الجهات على تحقيق وضوح أفضل واتخاذ قرارات مدروسة وتحسين أداء التسويق عبر تحليل الأعمال والرؤى المبنية على البيانات.",
+      btn_start:"ابدأ المحادثة",btn_services:"استعرض الخدمات",
+      st1:"متوسط تحسّن الأداء",st2:"قطاعات خدمناها",st3:"استبقاء العملاء",
+      fc1:"نمو +38%",fc2:"قرارات خلال أيام",fc3:"تنفيذ راقي",
+      trusted:"موثوقة لدى فرق طموحة",
+      about_label:"من نحن",about_title:"دعم احترافي قائم على الأعمال — بدون مبالغة.",about_sub:"نجمع بين التحليل الاستراتيجي والخبرة التسويقية الميدانية لتتحركوا بثقة.",
+      a_h1:"قرارات أوضح",a_p1:"نساعد فرق القيادة على تقليل التعقيد واختيار مسار واضح.",
+      a_h2:"تنفيذ أقوى",a_p2:"نساعد على تنفيذ تسويقي متسق بمظهر متميز ونتائج أفضل.",
+      a_h3:"تشغيل أسلس",a_p3:"نبسّط سير العمل وتدفق القرار لتتحرك الفرق أسرع وباحتكاك أقل.",
+      stat1:"تحسّن الأداء",stat2:"قطاعات",stat3:"رضا العملاء",stat4:"أول رد",
+      serv_label:"خدماتنا",serv_title:"ما الذي نركز عليه",serv_sub:"خدمات مركّزة مصممة لتراكم النتائج مع الوقت.",
+      s_h1:"وضوح استراتيجي",s_p1:"نبسّط ما تقدّم، ولمن، ولماذا — ليُفهم بسرعة.",
+      s_h2:"تحليل تسويقي",s_p2:"نراجع الأداء ورحلة العميل وإشارات السوق لتحديد ما يجب تغييره.",
+      s_h3:"توجيه الحملات",s_p3:"نحوّل الرؤى إلى أولويات: ماذا نركز، وماذا نختبر، وماذا نوقف.",
+      s_h4:"تموضع العلامة",s_p4:"رسالة واضحة ومتميزة تُظهر قيمتك في ثوانٍ.",
+      s_h5:"مراجعات الأداء",s_p5:"مراجعة عميقة للحملات والقمع والإبداع مع أولويات حسب الأثر.",
+      s_h6:"عمليات النمو",s_p6:"أنظمة بسيطة وروتين فعّال يحافظ على توافق الفريق وسرعته.",
+      how_label:"منهجيتنا",how_title:"كيف نعمل",how_sub:"بسيط، منظّم، وقابل للقياس — من أول مكالمة إلى نتائج واضحة.",
+      p1t:"نفهم",p1s:"نبدأ من واقع عملك: الأهداف، مؤشرات الأداء، وكيف يبدو النجاح.",
+      p2t:"نرتّب الأولويات",p2s:"نختصر كل شيء إلى خطوات عالية الأثر بتوجيه وقياس واضح.",
+      p3t:"ننفّذ",p3s:"تنفيذ أنظف عبر القنوات، تشتيت أقل، وتحسينات مستمرة.",
+      t_label:"آراء العملاء",t_title:"موثوقون من فرق تهتم بالنتائج",
+      tq1:"اختصروا الضوضاء وأعطونا خطة واضحة في أسبوعين. أصبحت حملاتنا مركّزة أخيرًا.",tn1:"سارة أ.",tr1:"مدير التسويق، قطاع تجزئة",
+      tq2:"برپل أوشن يعمل وكأنه جزء من فريقنا. جودة التحليل ووضوح التوجيه لا تُضاهى.",tn2:"محمد ه.",tr2:"مؤسس، شركة SaaS",
+      faq_label:"الأسئلة",faq_title:"إجابات سريعة",
+      q1:"مع من تعملون؟",aq1:"شركات صغيرة ومتوسطة طموحة وقيادات تسويق في السعودية والمنطقة يرغبون في توجيه أوضح وتنفيذ أقوى.",
+      q2:"كيف تبدأ المشاريع؟",aq2:"نبدأ بمكالمة تعريفية قصيرة، ثم جولة وضوح منظّمة لمواءمة الأهداف والمؤشرات والأولويات.",
+      q3:"هل تحلّون محل الوكالة؟",aq3:"غالبًا نكمّل الوكالات بتوجيه أدق، وأحيانًا نتولى الإشراف الكامل على الاستراتيجية والتنفيذ.",
+      q4:"متى نرى النتائج؟",aq4:"يظهر الوضوح خلال أيام، وتتراكم تحسينات الأداء خلال أول 60 إلى 90 يومًا.",
+      c_label:"تواصل",c_title:"تبغى وضوح في الخطوة الجاية؟",c_sub:"أرسل نبذة قصيرة — ونرد عليك بخطوات واضحة للتحرك.",
+      ci_title:"لنتحدث",ci_sub:"نرد عادة خلال 24 ساعة. شاركنا السياق ونكمل من هناك.",
+      loc_t:"الموقع",loc_s:"جدة، المملكة العربية السعودية",hr_t:"أوقات العمل",hr_s:"الأحد–الخميس، 9:00 – 18:00",
+      fl_name:"الاسم",fl_email:"البريد",fl_org:"الجهة",fl_msg:"كيف نقدر نساعد؟",fl_send:"إرسال الرسالة",
+      f_about:"تحليل أعمال وتسويق للفرق الطموحة. مقرّنا المملكة العربية السعودية.",
+      f_company:"الشركة",f_resources:"مصادر",f_connect:"تواصل",f_rights:"جميع الحقوق محفوظة.",f_loc:"جدة، المملكة العربية السعودية"
+    }
+  };
+
+  let currentLang = 'en';
+  function setLang(lang){
+    currentLang = lang;
+    const ar = lang === 'ar';
+    document.documentElement.lang = ar ? 'ar' : 'en';
+    document.documentElement.dir = ar ? 'rtl' : 'ltr';
+    $$('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (I18N[lang][k] != null) el.textContent = I18N[lang][k];
     });
-
-    // Reveal
-    const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    const reveals = document.querySelectorAll(".reveal");
-    if (!prefersReduced && "IntersectionObserver" in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("on"); });
-      }, { threshold: 0.14 });
-      reveals.forEach(el => io.observe(el));
-    } else {
-      reveals.forEach(el => el.classList.add("on"));
-    }
-
-    // Hero spotlight (desktop only)
-    const hero = document.getElementById("hero");
-    const spot = document.getElementById("spot");
-    const canHover = window.matchMedia?.("(hover: hover)").matches;
-    if (!prefersReduced && hero && spot && canHover) {
-      hero.addEventListener("pointermove", (e) => {
-        const r = hero.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        spot.style.setProperty("--x", x + "%");
-        spot.style.setProperty("--y", y + "%");
-      });
-    }
-
-    // Tilt (desktop only)
-    function attachTilt(el, max=8){
-      if (!el || prefersReduced || !canHover) return;
-      el.addEventListener("pointermove", (e) => {
-        const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const rx = (py - 0.5) * -max;
-        const ry = (px - 0.5) * max;
-        el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-      });
-      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
-    }
-    attachTilt(document.getElementById("tiltHero"), 6);
-    document.querySelectorAll("[data-tilt]").forEach(card => attachTilt(card, 7));
-
-    // Toast
-    const toast = document.getElementById("toast");
-    const toastText = document.getElementById("toastText");
-    let toastTimer;
-    function showToast(text){
-      toastText.textContent = text;
-      toast.classList.add("on");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("on"), 1700);
-    }
-
-    // Copy email
-    const email = "info@purpleocean.sa";
-    document.getElementById("copyEmailBtn")?.addEventListener("click", async () => {
-      try{
-        await navigator.clipboard.writeText(email);
-        showToast(currentLang === "ar" ? ("تم نسخ البريد: " + email) : ("Email copied: " + email));
-      }catch(e){
-        const t = document.createElement("textarea");
-        t.value = email;
-        t.setAttribute("readonly", "");
-        t.style.position = "absolute";
-        t.style.left = "-9999px";
-        document.body.appendChild(t);
-        t.select();
-        document.execCommand("copy");
-        document.body.removeChild(t);
-        showToast(currentLang === "ar" ? ("تم نسخ البريد: " + email) : ("Email copied: " + email));
-      }
-    });
-
-    // i18n
-    const I18N = {
-      en: {
-        title: "Purple Ocean — Better clarity. Better outcomes.",
-        meta_desc: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
-        brand_tag: "Better clarity. Better outcomes.",
-        nav_about: "About",
-        nav_focus: "Focus",
-        nav_how: "How we work",
-        nav_contact: "Contact",
-        hero_title: `Growth shouldn't <span class="grad">feel chaotic.</span>`,
-        hero_sub: "Purple Ocean helps organizations find clarity, make smarter decisions, and improve marketing performance through sharp business and marketing analysis.",
-        chip_clarity: `<i aria-hidden="true"></i> Clarity`,
-        chip_direction: `<i aria-hidden="true"></i> Direction`,
-        chip_execution: `<i aria-hidden="true"></i> Execution`,
-        b1: "Clear positioning and messaging that people understand fast",
-        b2: "Insight-driven marketing direction based on what the data is actually saying",
-        b3: "Less noise, cleaner execution",
-        btn_contact: "Contact Us",
-        btn_copy: "Copy email",
-        m1t: "Clarity on priorities",
-        m1s: "What to focus on, and what to test next.",
-        m2t: "Evidence-based direction",
-        m2s: "Decisions grounded in performance signals and customer behavior.",
-        m3t: "Cleaner execution",
-        m3s: "Simple structure that keeps teams aligned across channels.",
-        about_title: "About",
-        about_sub: "Professional, business-first support — without the fluff.",
-        a_label1: "Direction",
-        a_h1: "Clearer decisions",
-        a_p1: "We help leadership teams reduce complexity and choose a focused path forward.",
-        a_label2: "Standards",
-        a_h2: "Stronger execution",
-        a_p2: "We support consistent marketing execution that looks premium and performs.",
-        a_label3: "Simplicity",
-        a_h3: "Smoother operations",
-        a_p3: "We simplify workflows and decision flow so teams move faster with less friction.",
-        focus_title: "What we focus on",
-        focus_sub: "General on purpose — centered on outcomes that compound.",
-        f_label1: "Clarity",
-        f_h1: "Make the message obvious",
-        f_p1: "We simplify what you do, who it's for, and why it matters — so people understand you fast.",
-        f_label2: "Analysis",
-        f_h2: "See what to improve next",
-        f_p2: "We review performance, customer journey, and market signals to identify what to change.",
-        f_label3: "Marketing direction",
-        f_h3: "Fewer, stronger moves",
-        f_p3: "We translate insights into priorities: what to focus on, what to stop, and what to test.",
-        how_title: "How we work",
-        how_sub: "Simple, structured, measurable.",
-        s1t: "Understand the business",
-        s1s: "We start with the business reality: goals, performance signals, and what success must look like.",
-        s2t: "Reduce complexity to priorities",
-        s2s: "We compress everything into a few high-impact moves — clear direction, and clear measurement.",
-        s3t: "Execute with consistency",
-        s3s: "Cleaner execution across channels, fewer distractions, and a steady rhythm of improvements.",
-        cta_title: "Want clarity on what to do next?",
-        cta_sub: "Send a short intro — we'll respond with next steps and a simple way to move forward.",
-        footer_line: "Based in Saudi Arabia.",
-        toast_copied: "Copied."
-      },
-      ar: {
-        title: "Purple Ocean — وضوح أفضل. نتائج أقوى.",
-        meta_desc: "Purple Ocean تساعد الجهات على الوصول للوضوح، واتخاذ قرارات أذكى، وتحسين أداء التسويق عبر تحليل أعمال وتسويق دقيق.",
-        brand_tag: "وضوح أفضل. نتائج أقوى.",
-        nav_about: "من نحن",
-        nav_focus: "تركيزنا",
-        nav_how: "كيف نعمل",
-        nav_contact: "تواصل",
-        hero_title: `<span class="grad">الوضوح أَساسُ النُّموِّ.</span>`,
-        hero_sub: "برپل أوشن شريك استراتيجي يساعد الجهات على تحقيق وضوح أفضل، واتخاذ قرارات مدروسة، وتحسين أداء التسويق من خلال تحليل الأعمال والرؤى المبنية على البيانات.",
-        chip_clarity: `<i aria-hidden="true"></i> وضوح`,
-        chip_direction: `<i aria-hidden="true"></i> توجية`,
-        chip_execution: `<i aria-hidden="true"></i> تنفيذ`,
-        b1: "رسالة واضحة وتموضع يفهمه الناس بسرعة",
-        b2: "توجية مبني على البيانات وما تعكسه فعليًا",
-        b3: "ضوضاء أقل وتنفيذ مرن",
-        btn_contact: "تواصل معنا",
-        btn_copy: "نسخ البريد",
-        m1t: "وضوح في الأولويات",
-        m1s: "ما الذي نركز عليه، وما الذي نختبره بعدها.",
-        m2t: "توجية مبني على الأدلة",
-        m2s: "قرارات مبنية على مؤشرات الأداء وسلوك العملاء.",
-        m3t: "تنفيذ مرن",
-        m3s: "هيكل بسيط يحافظ على اتساق الفريق.",
-        about_title: "من نحن",
-        about_sub: "دعم احترافي قائم على فهم الأعمال — بدون مبالغة.",
-        a_label1: "توجية",
-        a_h1: "قرارات أوضح",
-        a_p1: "نساعد فرق القيادة على تقليل التعقيد واختيار مسار واضح.",
-        a_label2: "معايير",
-        a_h2: "تنفيذ أقوى",
-        a_p2: "نساعد على تنفيذ تسويقي متسق بمظهر ممتاز ونتائج أفضل.",
-        a_label3: "تبسيط",
-        a_h3: "تشغيل أسلس",
-        a_p3: "نبسّط سير العمل وتدفّق القرار لتتحرك الفرق أسرع وباحتكاك أقل.",
-        focus_title: "تركيزنا",
-        focus_sub: "مركز على نتائج تتراكم.",
-        f_label1: "وضوح",
-        f_h1: "خل الرسالة واضحة",
-        f_p1: "نبسّط ما تقدم، ولمن، ولماذا — ليتم فهمك بسرعة.",
-        f_label2: "تحليل",
-        f_h2: "اعرف التالي للتحسين",
-        f_p2: "نراجع الأداء ورحلة العميل وإشارات السوق لتحديد ما يجب تغييره.",
-        f_label3: "توجية تسويقي",
-        f_h3: "خطوات اقل أثر اكبر",
-        f_p3: "نحوّل الرؤى إلى أولويات: ماذا نركز عليه، وماذا نختبر.",
-        how_title: "كيف نعمل",
-        how_sub: "ببساطة. بنظام. وبقياس.",
-        s1t: "نفهم الواقع",
-        s1s: "نبدأ من واقع العمل: الأهداف، مؤشرات الأداء، وكيف يبدو النجاح فعليًا.",
-        s2t: "نحوّل التعقيد إلى أولويات",
-        s2s: "نختصر كل شيء إلى خطوات عالية الأثر: توجية واضح وقياس واضح.",
-        s3t: "تنفيذ متسق",
-        s3s: "تنفيذ مرن، تشتيت أقل، وتحسينات مستمرة.",
-        cta_title: "تبغى وضوح في الخطوة الجاية؟",
-        cta_sub: "أرسل نبذة قصيرة — ونرد عليك بخطوات واضحة للتحرك.",
-        footer_line: "المملكة العربية السعودية.",
-        toast_copied: "تم النسخ."
-      }
-    };
-
-    const MAIL = {
-      en: {
-        subject: "Inquiry (Purple Ocean)",
-        body: "Hi Purple Ocean,\n\nOrganization: \nWebsite/IG: \nWhat you want to improve: \n\nThanks,"
-      },
-      ar: {
-        subject: "استفسار (Purple Ocean)",
-        body: "مرحباً Purple Ocean،\n\nالجهة/الشركة: \nالموقع/الانستقرام: \nما الذي تريد تحسينه: \n\nشكراً,"
-      }
-    };
-
-    function buildMailto(lang){
-      const s = encodeURIComponent(MAIL[lang].subject);
-      const b = encodeURIComponent(MAIL[lang].body);
-      return `mailto:${email}?subject=${s}&body=${b}`;
-    }
-
-    let currentLang = "en";
-
-    function setLang(lang){
-      currentLang = lang;
-      const isAR = lang === "ar";
-
-      document.documentElement.lang = isAR ? "ar" : "en";
-      document.documentElement.dir  = isAR ? "rtl" : "ltr";
-
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        const val = I18N[lang][key];
-        if (val == null) return;
-        el.innerHTML = val;
-      });
-
-      document.title = I18N[lang].title;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", I18N[lang].meta_desc);
-
-      const href = buildMailto(lang);
-      document.querySelectorAll('[data-mailto="inquiry"]').forEach(a => a.setAttribute("href", href));
-
-      const btn = document.getElementById("langBtn");
-      if (btn) btn.textContent = isAR ? "EN" : "عربي";
-
-      localStorage.setItem("po_lang", lang);
-    }
-
-    const saved = localStorage.getItem("po_lang");
-    const browserAR = (navigator.language || "").toLowerCase().startsWith("ar");
-    setLang(saved || (browserAR ? "ar" : "en"));
-
-    document.getElementById("langBtn")?.addEventListener("click", () => {
-      setLang(currentLang === "en" ? "ar" : "en");
-    });
-  </script>
+    $('#langBtn').textContent = ar ? 'EN' : 'عربي';
+    try{localStorage.setItem('po_lang', lang)}catch(e){}
+  }
+  $('#langBtn').addEventListener('click', () => setLang(currentLang === 'en' ? 'ar' : 'en'));
+  const saved = (()=>{try{return localStorage.getItem('po_lang')}catch(e){return null}})();
+  setLang(saved || ((navigator.language||'').toLowerCase().startsWith('ar') ? 'ar' : 'en'));
+})();
+</script>
 </body>
 </html>
